@@ -20,28 +20,11 @@ export default function Home({ allPostsData }) {
       <Head>
         <title>{siteTitle}</title>
       </Head>
-      <section className={utilStyles.headingMd}>
-        <p>Mobage translation archive. Mostly Helios Rising Heroes.</p>
-        <p>
-          (This is a sample website - you’ll be building a site like this on{' '}
-          <a href="https://nextjs.org/learn">our Next.js tutorial</a>.)
-        </p>
-      </section>
-
-      <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <h2 className={utilStyles.headingLg}>Blog</h2>
-        <ul className={utilStyles.list}>
-          {allPostsData.map(({ id, date, title }) => (
-            <li className={utilStyles.listItem} key={id}>
-              <Link href={`/posts/${id}`}>
-                <a>{title}</a>
-              </Link>
-              <br />
-              <small className={utilStyles.lightText}>
-                <Date dateString={date} />
-              </small>
-            </li>
-          ))}
+      <section className='my-20 max-w-xl mx-auto'>
+        <p>mediocre proof of concept for a mobage story database/directory. mostly an exercise to figure out back-end and like serverless function stuff rn but i will be fancifying the fuck out of this now that I have an actual foundation</p>
+        <ul className='list-disc leading-loose my-4 text-lg'>
+          <li><Link href="/story"><a className='text-blue-500 hover:underline hover:underline-offset-4'>Main Story</a></Link></li>
+          <li><Link href="/event/sweet-spell"><a className='text-blue-500 hover:underline hover:underline-offset-4'>Event Story</a></Link></li>
         </ul>
       </section>
     </Layout>

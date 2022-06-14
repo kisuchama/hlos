@@ -1,4 +1,4 @@
-generator client {
+generator js {
   provider        = "prisma-client-js"
   previewFeatures = ["referentialIntegrity"]
 }
@@ -9,20 +9,152 @@ datasource db {
   referentialIntegrity = "prisma"
 }
 
-model caec3e3_aaa2_52f6_9b51_beb91cf1e69c_20220608211455_vrepl {
-  id         Int @id @default(autoincrement())
-  chapter_id Int
-  part       Int
-  hero_id    Int
-  part_id    Int
+model Hero {
+  id          Int           @id @default(autoincrement())
+  name        String
+  surname     String?
+  hex         String?       @db.Char(7)
+  chibi       String?
+  portrait    String?
+  substance   String?
+  birthday    DateTime?     @db.Date
+  height      Int?
+  weight      Int?
+  sector      Sector?       @relation(fields: [sectorId], references: [id])
+  sectorId    Int?
+  nameCaller  Appellation[] @relation("Caller")
+  isNamed     Appellation[] @relation("Namee")
+  events      Event[]
+  cards       Card[]
+  eventCameos EventCameo[]
+  mainCameos  MainCameo[]
+  cardCameos  CardCameo[]
 
-  @@index([chapter_id], map: "chapter_id_idx")
-  @@index([hero_id], map: "hero_id_idx")
-  @@index([part_id], map: "part_id_idx")
-  @@map("_6caec3e3_aaa2_52f6_9b51_beb91cf1e69c_20220608211455_vrepl")
+  @@index([sectorId])
 }
 
-model event_cameos {
+model Sector {
+  id       Int     @id @default(autoincrement())
+  location String
+  color    String?
+  hex      String? @db.Char(7)
+  heroes   Hero[]
+  events   Event[]
+}
+
+model Appellation {
+  appellation String
+  hero        Hero   @relation("Namee", fields: [heroId], references: [id])
+  heroId      Int
+  caller      Hero   @relation("Caller", fields: [callerId], references: [id])
+  callerId    Int
+
+  @@id([heroId, callerId])
+}
+
+model Event {
+  id        Int         @id @default(autoincrement())
+  name      String
+  nameJp    String?
+  slug      String
+  startDate DateTime    @db.Date
+  endDate   DateTime    @db.Date
+  sector    Sector?     @relation(fields: [sectorId], references: [id])
+  sectorId  Int?
+  hero      Hero?       @relation(fields: [heroId], references: [id])
+  heroId    Int?
+  parts     EventPart[]
+  cards     Card[]
+
+  @@index([sectorId, heroId])
+  @@unique([slug])
+}
+
+model EventPart {
+  id          Int          @id @default(autoincrement())
+  event       Event        @relation(fields: [eventId], references: [id])
+  eventId     Int
+  part        Int
+  translation String?
+  cameos      EventCameo[]
+
+  @@index([eventId])
+}
+
+model EventCameo {
+  hero   Hero      @relation(fields: [heroId], references: [id])
+  heroId Int
+  part   EventPart @relation(fields: [partId], references: [id])
+  partId Int
+
+  @@id([heroId, partId])
+}
+
+model Card {
+  id          Int         @id @default(autoincrement())
+  title       String?
+  titleJp     String?
+  hero        Hero        @relation(fields: [heroId], references: [id])
+  heroId      Int
+  event       Event       @relation(fields: [eventId], references: [id])
+  eventId     Int
+  translation String?
+  cameos      CardCameo[]
+
+  @@index([heroId, eventId])
+}
+
+model CardCameo {
+  hero   Hero @relation(fields: [heroId], references: [id])
+  heroId Int
+  card   Card @relation(fields: [cardId], references: [id])
+  cardId Int
+
+  @@id([heroId, cardId])
+}
+
+model MainStory {
+  id      Int        @id @default(autoincrement())
+  name    String
+  season  Int
+  chapter Int
+  parts   MainPart[]
+}
+
+model MainPart {
+  id          Int         @id @default(autoincrement())
+  chapter     MainStory   @relation(fields: [chapterId], references: [id])
+  chapterId   Int
+  part        Int
+  translation String?
+  cameos      MainCameo[]
+
+  @@index([chapterId])
+}
+
+model MainCameo {
+  hero   Hero     @relation(fields: [heroId], references: [id])
+  heroId Int
+  part   MainPart @relation(fields: [partId], references: [id])
+  partId Int
+
+  @@id([heroId, partId])
+}
+
+model a087f013_aae3_537c_92c4_659e68d3a934_20220612135955_vrepl {
+  id       Int @id @default(autoincrement())
+  event_id Int
+  part     Int
+  hero_id  Int
+  part_id  Int
+
+  @@index([event_id], map: "event_id_idx")
+  @@index([hero_id], map: "hero_id_idx")
+  @@index([part_id], map: "part_id_idx")
+  @@map("_a087f013_aae3_537c_92c4_659e68d3a934_20220612135955_vrepl")
+}
+
+model aa6d9409_ade3_58ef_8ba5_a8b798370655_20220612140424_vrepl {
   id       Int @id @default(autoincrement())
   event_id Int
   part     Int
@@ -30,9 +162,23 @@ model event_cameos {
 
   @@index([event_id], map: "event_id_idx")
   @@index([hero_id], map: "hero_id_idx")
+  @@map("_aa6d9409_ade3_58ef_8ba5_a8b798370655_20220612140424_vrepl")
 }
 
-model events {
+model aa9cd50e_fb45_5321_90a3_fb86541da6d6_20220612142140_vrepl {
+  id       Int  @id @default(autoincrement())
+  event_id Int
+  part     Int
+  hero_id  Int
+  part_id  Int?
+
+  @@index([event_id], map: "event_id_idx")
+  @@index([hero_id], map: "hero_id_idx")
+  @@index([part_id], map: "part_id_idx")
+  @@map("_aa9cd50e_fb45_5321_90a3_fb86541da6d6_20220612142140_vrepl")
+}
+
+model ade9f43a_23fa_54c3_8356_2b538b3ccf43_20220612140000_vrepl {
   id         Int       @id @default(autoincrement())
   name       String    @db.VarChar(255)
   name_jp    String?   @db.VarChar(255)
@@ -41,51 +187,5 @@ model events {
   sector_id  Int?
 
   @@index([sector_id], map: "sector_id_idx")
-}
-
-model heroes {
-  id         Int       @id @default(autoincrement())
-  first_name String    @db.VarChar(255)
-  last_name  String?   @db.VarChar(255)
-  substance  String?   @db.VarChar(255)
-  birthday   DateTime? @db.Date
-  height     Int?
-  weight     Int?
-  sector_id  Int?
-  hex        String    @db.Char(7)
-  chibi      String?   @db.VarChar(255)
-
-  @@index([sector_id], map: "sector_id_idx")
-}
-
-model main_cameos {
-  id      Int @id @default(autoincrement())
-  hero_id Int
-  part_id Int
-
-  @@index([hero_id], map: "hero_id_idx")
-  @@index([part_id], map: "part_id_idx")
-}
-
-model main_parts {
-  id          Int     @id @default(autoincrement())
-  chapter_id  Int
-  part        Int
-  translation String? @db.VarChar(255)
-
-  @@index([chapter_id], map: "chapter_id_idx")
-}
-
-model mainstory {
-  id      Int    @id @default(autoincrement())
-  name    String @db.VarChar(255)
-  season  Int
-  chapter Int
-}
-
-model sectors {
-  id    Int     @id @default(autoincrement())
-  name  String  @db.VarChar(10)
-  color String? @db.VarChar(10)
-  hex   String? @db.Char(7)
+  @@map("_ade9f43a_23fa_54c3_8356_2b538b3ccf43_20220612140000_vrepl")
 }
