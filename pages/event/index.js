@@ -1,17 +1,44 @@
-import useSWR from 'swr'
+import prisma from '../../lib/prisma'
 import Event from '../../components/Event'
 
-const fetcher = (url) => fetch(url).then((res) => res.json())
+export async function getStaticProps() {
+    const allEventsData = await prisma.event.findMany({
+        orderBy: {
+            startDate: 'asc',
+        },
+        select: {
+            name: true,
+            nameJp: true,
+            slug: true,
+            startDate: true,
+            endDate: true,
+            sector: {
+                select: {
+                    location: true,
+                },
+            },
+            hero: {
+                select: {
+                    name: true,
+                },
+            },
+        },
+    })
 
-export default function EventIndex() {
-    const { data, error } = useSWR('/api/db/event', fetcher)
+    for (const event of allEventsData) {
+        event.startDate = event.startDate.toString()
+        event.endDate = event.endDate.toString()
+    }
 
-    if (error) return <div>Failed to load</div>
-    if (!data) return <div>Loading...</div>
+    return {
+        props: { allEventsData }
+    }
+}
 
+export default function EventIndex({ allEventsData }) {
     return (
         <ul>
-            {data.map((e, i) => (
+            {allEventsData.map((e, i) => (
                 <Event key={i} event={e} />
             ))}
         </ul>
