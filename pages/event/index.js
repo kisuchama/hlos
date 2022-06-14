@@ -1,4 +1,5 @@
 import prisma from '../../lib/prisma'
+import Event from '../../components/Event'
 
 export async function getStaticProps() {
     const allEventsData = await prisma.event.findMany({
