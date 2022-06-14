@@ -1,31 +1,49 @@
-import useSWR from 'swr'
-import Chapter from '../components/Chapters'
+import prisma from '../lib/prisma'
 import Layout from '../components/layout'
 import Head from 'next/head'
+import Chapter from '../components/Chapters'
 
-const fetcher = async (url) => {
-    const res = await fetch(url)
-    const data = await res.json()
+export async function getStaticProps() {
+    const story = await prisma.mainStory.findMany({
+        orderBy: [
+            {season: 'asc'},
+            {chapter: 'asc'},
+        ],
+        select: {
+            season: true,
+            chapter: true,
+            name: true,
+            parts: {
+                select: {
+                    part: true,
+                    cameos: {
+                        select: {
+                            hero: {
+                                select: {
+                                    name: true,
+                                    chibi: true,
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+    })
 
-    if (res.status !== 200) {
-        throw new Error(data.message)
+    return {
+        props: { story }
     }
-    return data
 }
 
-export default function StoryIndex() {
-    const { data, error } = useSWR('/api/db/story', fetcher)
-
-    if (error) return <div>{error.message}</div>
-    if (!data) return <div>Loading...</div>
-
+export default function StoryIndex({ story }) {
     return (
         <Layout>
             <Head>
                 <title>Main Story</title>
             </Head>
             <h1 className='text-6xl font-extrabold uppercase text-center mb-12'>Main Story</h1>
-            {data.map((c, i) => (
+            {story.map((c, i) => (
                 <Chapter key={i} chapter={c} />
             ))}
         </Layout>

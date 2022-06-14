@@ -14,7 +14,7 @@ export default function Chapter({ chapter }) {
     return (
         <div className="grid lg:grid-cols-2 gap-8 mb-20">
             <div>
-                <h2 className="text-4xl font-extrabold inline-block float-left leading-loose">PT{chapter.season}{ch} \/\/</h2>
+                <h2 className="text-4xl font-extrabold inline-block float-left leading-loose">PT{chapter.season}{ch}</h2>
                 <Image
                     src={`/images/story/${chapter.season}-${chapter.chapter}.png`}
                     alt={chapter.name}
