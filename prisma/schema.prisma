@@ -56,7 +56,7 @@ model Event {
   id        Int         @id @default(autoincrement())
   name      String
   nameJp    String?
-  slug      String
+  slug      String      @unique
   startDate DateTime    @db.Date
   endDate   DateTime    @db.Date
   sector    Sector?     @relation(fields: [sectorId], references: [id])
@@ -67,7 +67,6 @@ model Event {
   cards     Card[]
 
   @@index([sectorId, heroId])
-  @@unique([slug])
 }
 
 model EventPart {
@@ -141,51 +140,57 @@ model MainCameo {
   @@id([heroId, partId])
 }
 
-model a087f013_aae3_537c_92c4_659e68d3a934_20220612135955_vrepl {
-  id       Int @id @default(autoincrement())
-  event_id Int
-  part     Int
-  hero_id  Int
-  part_id  Int
+model d8853d6_3fa0_557b_9cba_51b7f7cbb04f_20220613221308_vrepl {
+  id        Int      @id @default(autoincrement())
+  name      String
+  nameJp    String?
+  startDate DateTime @db.Date
+  endDate   DateTime @db.Date
+  sectorId  Int?
+  heroId    Int?
+  slug      String
 
-  @@index([event_id], map: "event_id_idx")
-  @@index([hero_id], map: "hero_id_idx")
-  @@index([part_id], map: "part_id_idx")
-  @@map("_a087f013_aae3_537c_92c4_659e68d3a934_20220612135955_vrepl")
+  @@index([sectorId, heroId], map: "Event_sectorId_heroId_idx")
+  @@map("_1d8853d6_3fa0_557b_9cba_51b7f7cbb04f_20220613221308_vrepl")
 }
 
-model aa6d9409_ade3_58ef_8ba5_a8b798370655_20220612140424_vrepl {
-  id       Int @id @default(autoincrement())
-  event_id Int
-  part     Int
-  hero_id  Int
+model c224072_1cd4_5b6b_967a_923e8b051f0e_20220613224824_vrepl {
+  id        Int      @id @default(autoincrement())
+  name      String
+  nameJp    String?
+  startDate DateTime @db.Date
+  endDate   DateTime @db.Date
+  sectorId  Int?
+  heroId    Int?
+  slug      String?
 
-  @@index([event_id], map: "event_id_idx")
-  @@index([hero_id], map: "hero_id_idx")
-  @@map("_aa6d9409_ade3_58ef_8ba5_a8b798370655_20220612140424_vrepl")
+  @@index([sectorId, heroId], map: "Event_sectorId_heroId_idx")
+  @@map("_4c224072_1cd4_5b6b_967a_923e8b051f0e_20220613224824_vrepl")
 }
 
-model aa9cd50e_fb45_5321_90a3_fb86541da6d6_20220612142140_vrepl {
-  id       Int  @id @default(autoincrement())
-  event_id Int
-  part     Int
-  hero_id  Int
-  part_id  Int?
+model d8fd_db02_5992_bccd_f3c3e2c94d8e_20220613221439_vrepl {
+  id        Int      @id @default(autoincrement())
+  name      String
+  nameJp    String?
+  startDate DateTime @db.Date
+  endDate   DateTime @db.Date
+  sectorId  Int?
+  heroId    Int?
+  slug      String
 
-  @@index([event_id], map: "event_id_idx")
-  @@index([hero_id], map: "hero_id_idx")
-  @@index([part_id], map: "part_id_idx")
-  @@map("_aa9cd50e_fb45_5321_90a3_fb86541da6d6_20220612142140_vrepl")
+  @@index([sectorId, heroId], map: "Event_sectorId_heroId_idx")
+  @@map("_7367d8fd_db02_5992_bccd_f3c3e2c94d8e_20220613221439_vrepl")
 }
 
-model ade9f43a_23fa_54c3_8356_2b538b3ccf43_20220612140000_vrepl {
-  id         Int       @id @default(autoincrement())
-  name       String    @db.VarChar(255)
-  name_jp    String?   @db.VarChar(255)
-  start_date DateTime  @db.Date
-  end_date   DateTime? @db.Date
-  sector_id  Int?
+model ff38c485_e083_5aa4_bcd6_4ebae9cb1a91_20220613221557_vrepl {
+  id        Int      @id @default(autoincrement())
+  name      String
+  nameJp    String?
+  startDate DateTime @db.Date
+  endDate   DateTime @db.Date
+  sectorId  Int?
+  heroId    Int?
 
-  @@index([sector_id], map: "sector_id_idx")
-  @@map("_ade9f43a_23fa_54c3_8356_2b538b3ccf43_20220612140000_vrepl")
+  @@index([sectorId, heroId], map: "Event_sectorId_heroId_idx")
+  @@map("_ff38c485_e083_5aa4_bcd6_4ebae9cb1a91_20220613221557_vrepl")
 }
