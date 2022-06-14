@@ -1,5 +1,4 @@
 import prisma from '../../lib/prisma'
-import Event from '../../components/Event'
 
 export async function getStaticProps() {
     const allEventsData = await prisma.event.findMany({
@@ -26,8 +25,8 @@ export async function getStaticProps() {
     })
 
     for (const event of allEventsData) {
-        event.startDate = event.startDate.toString()
-        event.endDate = event.endDate.toString()
+        event.startDate = event.startDate.toISOString()
+        event.endDate = event.endDate.toISOString()
     }
 
     return {
