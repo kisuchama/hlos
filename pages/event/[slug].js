@@ -4,6 +4,7 @@ import Layout from '../../components/layout'
 import Head from 'next/head'
 import Image from "next/image"
 import Date from '../../components/date';
+import { CgArrowRight, CgCalendarToday } from 'react-icons/cg'
 
 export async function getStaticProps({ params }) {
     const event = await prisma.event.findUnique({
@@ -14,6 +15,7 @@ export async function getStaticProps({ params }) {
             name: true,
             nameJp: true,
             slug: true,
+            desc: true,
             startDate: true,
             endDate: true,
             sector: {
@@ -84,8 +86,15 @@ export default function EventPage({ event }) {
                             height={720}
                         />
                         <div className="my-4">
-                            <span><Date dateString={event.startDate} /> → <Date dateString={event.endDate} /></span>
-                            <p className="py-4">Fetch event description. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi eleifend id ante a mollis. Quisque laoreet auctor venenatis. Ut ligula metus, sagittis ac bibendum eu, dapibus et justo. Nam suscipit sagittis dolor, at accumsan eros congue quis. Fusce sit amet elit eros. Phasellus ultricies risus sit amet metus molestie porta.</p>
+                            <div className="flex flex-row items-center justify-start">
+                                <CgCalendarToday className="text-slate-500" /> 
+                                <Date dateString={event.startDate} /> 
+                                <CgArrowRight className="text-slate-500" /> 
+                                <Date dateString={event.endDate} />
+                            </div>
+                            {event.desc ? (
+                                <p className="py-4" dangerouslySetInnerHTML={{ __html: `${event.desc}`}}></p>
+                            ) : (<></>)}
                         </div>
                     </div>
                 </div>

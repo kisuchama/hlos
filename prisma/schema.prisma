@@ -9,64 +9,64 @@ datasource db {
   referentialIntegrity = "prisma"
 }
 
-model Hero {
-  id          Int           @id @default(autoincrement())
-  name        String
-  surname     String?
-  hex         String?       @db.Char(7)
-  chibi       String?
-  portrait    String?
-  substance   String?
-  birthday    DateTime?     @db.Date
-  height      Int?
-  weight      Int?
-  sector      Sector?       @relation(fields: [sectorId], references: [id])
-  sectorId    Int?
-  nameCaller  Appellation[] @relation("Caller")
-  isNamed     Appellation[] @relation("Namee")
-  events      Event[]
-  cards       Card[]
-  eventCameos EventCameo[]
-  mainCameos  MainCameo[]
-  cardCameos  CardCameo[]
-
-  @@index([sectorId])
-}
-
-model Sector {
-  id       Int     @id @default(autoincrement())
-  location String
-  color    String?
-  hex      String? @db.Char(7)
-  heroes   Hero[]
-  events   Event[]
-}
-
 model Appellation {
   appellation String
-  hero        Hero   @relation("Namee", fields: [heroId], references: [id])
+  hero        Hero    @relation("Namee", fields: [heroId], references: [id])
   heroId      Int
-  caller      Hero   @relation("Caller", fields: [callerId], references: [id])
+  caller      Hero    @relation("Caller", fields: [callerId], references: [id])
   callerId    Int
 
   @@id([heroId, callerId])
+}
+
+model Card {
+  id          Int         @id @default(autoincrement())
+  title       String?
+  titleJp     String?
+  hero        Hero        @relation(fields:[heroId], references:[id])
+  heroId      Int
+  event       Event       @relation(fields: [eventId], references: [id])
+  eventId     Int
+  translation String?
+  cameos      CardCameo[]
+
+  @@index([heroId, eventId])
+}
+
+model CardCameo {
+  hero    Hero  @relation(fields: [heroId], references: [id])
+  heroId  Int
+  card    Card  @relation(fields: [cardId], references: [id])
+  cardId  Int
+
+  @@id([heroId, cardId])
 }
 
 model Event {
   id        Int         @id @default(autoincrement())
   name      String
   nameJp    String?
-  slug      String      @unique
+  desc      String?     @db.Text
   startDate DateTime    @db.Date
   endDate   DateTime    @db.Date
   sector    Sector?     @relation(fields: [sectorId], references: [id])
   sectorId  Int?
   hero      Hero?       @relation(fields: [heroId], references: [id])
   heroId    Int?
+  slug      String      @unique
   parts     EventPart[]
   cards     Card[]
 
   @@index([sectorId, heroId])
+}
+
+model EventCameo {
+  hero    Hero      @relation(fields: [heroId], references: [id])
+  heroId  Int
+  part    EventPart @relation(fields: [partId], references: [id])
+  partId  Int
+
+  @@id([heroId, partId])
 }
 
 model EventPart {
@@ -80,55 +80,28 @@ model EventPart {
   @@index([eventId])
 }
 
-model EventCameo {
-  hero   Hero      @relation(fields: [heroId], references: [id])
-  heroId Int
-  part   EventPart @relation(fields: [partId], references: [id])
-  partId Int
+model Hero {
+  id          Int           @id @default(autoincrement())
+  name        String
+  surname     String?
+  hex         String?       @db.Char(7)
+  chibi       String?
+  portrait    String?
+  substance   String?
+  birthday    DateTime?     @db.Date
+  height      Int?
+  weight      Int?
+  sector      Sector?       @relation(fields: [sectorId], references: [id])
+  sectorId    Int?
+  namee       Appellation[] @relation("Namee")
+  caller      Appellation[] @relation("Caller")
+  cards       Card[]
+  cardCameos  CardCameo[]
+  events      Event[]
+  eventCameos EventCameo[]
+  mainCameos  MainCameo[]
 
-  @@id([heroId, partId])
-}
-
-model Card {
-  id          Int         @id @default(autoincrement())
-  title       String?
-  titleJp     String?
-  hero        Hero        @relation(fields: [heroId], references: [id])
-  heroId      Int
-  event       Event       @relation(fields: [eventId], references: [id])
-  eventId     Int
-  translation String?
-  cameos      CardCameo[]
-
-  @@index([heroId, eventId])
-}
-
-model CardCameo {
-  hero   Hero @relation(fields: [heroId], references: [id])
-  heroId Int
-  card   Card @relation(fields: [cardId], references: [id])
-  cardId Int
-
-  @@id([heroId, cardId])
-}
-
-model MainStory {
-  id      Int        @id @default(autoincrement())
-  name    String
-  season  Int
-  chapter Int
-  parts   MainPart[]
-}
-
-model MainPart {
-  id          Int         @id @default(autoincrement())
-  chapter     MainStory   @relation(fields: [chapterId], references: [id])
-  chapterId   Int
-  part        Int
-  translation String?
-  cameos      MainCameo[]
-
-  @@index([chapterId])
+  @@index([sectorId])
 }
 
 model MainCameo {
@@ -140,57 +113,30 @@ model MainCameo {
   @@id([heroId, partId])
 }
 
-model d8853d6_3fa0_557b_9cba_51b7f7cbb04f_20220613221308_vrepl {
-  id        Int      @id @default(autoincrement())
-  name      String
-  nameJp    String?
-  startDate DateTime @db.Date
-  endDate   DateTime @db.Date
-  sectorId  Int?
-  heroId    Int?
-  slug      String
+model MainPart {
+  id          Int        @id @default(autoincrement())
+  chapter     MainStory  @relation(fields: [chapterId], references: [id])
+  chapterId   Int
+  part        Int
+  translation String?
+  cameos      MainCameo[]
 
-  @@index([sectorId, heroId], map: "Event_sectorId_heroId_idx")
-  @@map("_1d8853d6_3fa0_557b_9cba_51b7f7cbb04f_20220613221308_vrepl")
+  @@index([chapterId])
 }
 
-model c224072_1cd4_5b6b_967a_923e8b051f0e_20220613224824_vrepl {
-  id        Int      @id @default(autoincrement())
-  name      String
-  nameJp    String?
-  startDate DateTime @db.Date
-  endDate   DateTime @db.Date
-  sectorId  Int?
-  heroId    Int?
-  slug      String?
-
-  @@index([sectorId, heroId], map: "Event_sectorId_heroId_idx")
-  @@map("_4c224072_1cd4_5b6b_967a_923e8b051f0e_20220613224824_vrepl")
+model MainStory {
+  id      Int         @id @default(autoincrement())
+  name    String
+  season  Int
+  chapter Int
+  parts   MainPart[]
 }
 
-model d8fd_db02_5992_bccd_f3c3e2c94d8e_20220613221439_vrepl {
-  id        Int      @id @default(autoincrement())
-  name      String
-  nameJp    String?
-  startDate DateTime @db.Date
-  endDate   DateTime @db.Date
-  sectorId  Int?
-  heroId    Int?
-  slug      String
-
-  @@index([sectorId, heroId], map: "Event_sectorId_heroId_idx")
-  @@map("_7367d8fd_db02_5992_bccd_f3c3e2c94d8e_20220613221439_vrepl")
-}
-
-model ff38c485_e083_5aa4_bcd6_4ebae9cb1a91_20220613221557_vrepl {
-  id        Int      @id @default(autoincrement())
-  name      String
-  nameJp    String?
-  startDate DateTime @db.Date
-  endDate   DateTime @db.Date
-  sectorId  Int?
-  heroId    Int?
-
-  @@index([sectorId, heroId], map: "Event_sectorId_heroId_idx")
-  @@map("_ff38c485_e083_5aa4_bcd6_4ebae9cb1a91_20220613221557_vrepl")
+model Sector {
+  id       Int     @id @default(autoincrement())
+  location String
+  color    String?
+  hex      String? @db.Char(7)
+  heroes   Hero[]
+  events   Event[]
 }
