@@ -75,8 +75,11 @@ export default function EventPage({ event }) {
             <Head>
                 <title>{event.name}</title>
             </Head>
-            <h1 className="text-4xl font-extrabold text-center leading-loose">{event.name}</h1>
-            <div className="grid lg:grid-cols-2 gap-8">
+            <section className="text-center mb-12">
+                <h1 className="text-4xl font-bold leading-relaxed">{event.name}</h1>
+                {event.nameJp ? (<h2 className="text-lg text-slate-500 leading-loose">{event.nameJp}</h2>):(<></>)}
+            </section>
+            <section className="grid lg:grid-cols-2 gap-8">
                 <div>
                     <div className="lg:sticky lg:top-4">
                         <Image
@@ -103,7 +106,7 @@ export default function EventPage({ event }) {
                         <StoryPart key={i} part={p} />
                     ))}
                 </div>
-            </div>
+            </section>
         </Layout>
     )
 }
