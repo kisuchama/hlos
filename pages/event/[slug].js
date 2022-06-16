@@ -85,8 +85,8 @@ export default function EventPage({ event }) {
                         <Image
                             src={`/images/${event.slug}/main.png`}
                             alt={event.name}
-                            width={1280}
-                            height={720}
+                            width={2048}
+                            height={1260}
                         />
                         <div className="my-4">
                             <div className="flex flex-row items-center justify-start">
@@ -96,7 +96,7 @@ export default function EventPage({ event }) {
                                 <Date dateString={event.endDate} />
                             </div>
                             {event.desc ? (
-                                <p className="py-4" dangerouslySetInnerHTML={{ __html: `${event.desc}`}}></p>
+                                <p className="py-4">{event.desc}</p>
                             ) : (<></>)}
                         </div>
                     </div>
