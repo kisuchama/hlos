@@ -57,7 +57,7 @@ export default function Home({ cameosCounted }) {
                   {h.chibi ? (
                     <td className='pl-6 pt-4 pb-2' width='88px'>
                       <Image
-                        src={`https://res.cloudinary.com/kisu/image/upload/${h.chibi}/hlos/${h.name}/chibi.png`}
+                        src={`/images/chibi/${h.name.toLowerCase()}.png`}
                         alt={h.name}
                         width={66}
                         height={60} 

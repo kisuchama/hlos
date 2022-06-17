@@ -6,7 +6,7 @@ export default function Cameo({ cameo }) {
         <Link href={`/cameos/${cameo.hero.name}`}>
             <a className="h-80px w-88px relative inline-block">
                 <Image
-                    src={`https://res.cloudinary.com/kisu/image/upload/${cameo.hero.chibi}/hlos/${cameo.hero.name}/chibi.png`}
+                    src={`/images/chibi/${cameo.hero.name.toLowerCase()}.png`}
                     alt={cameo.hero.name}
                     width={66}
                     height={60} 

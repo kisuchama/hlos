@@ -5,6 +5,7 @@ import Head from 'next/head'
 import Image from "next/image"
 import Date from '../../components/date';
 import { CgArrowRight, CgCalendarToday } from 'react-icons/cg'
+import styles from '../../components/Image.module.css'
 
 export async function getStaticProps({ params }) {
     const event = await prisma.event.findUnique({
@@ -75,16 +76,21 @@ export default function EventPage({ event }) {
             <Head>
                 <title>{event.name}</title>
             </Head>
-            <h1 className="text-4xl font-extrabold text-center leading-loose">{event.name}</h1>
-            <div className="grid lg:grid-cols-2 gap-8">
+            <section className="text-center mb-12">
+                <h1 className="text-4xl font-bold leading-relaxed">{event.name}</h1>
+                {event.nameJp ? (<h2 className="text-lg text-slate-500 leading-loose">{event.nameJp}</h2>):(<></>)}
+            </section>
+            <section className="grid lg:grid-cols-2 gap-8">
                 <div>
                     <div className="lg:sticky lg:top-4">
-                        <Image
-                            src={`/images/${event.slug}/main.png`}
-                            alt={event.name}
-                            width={1280}
-                            height={720}
-                        />
+                        <div className={`${styles.imgCG}`}>
+                            <Image
+                                src={`/images/event/${event.slug}/main.jpg`}
+                                alt={event.name}
+                                width={1024}
+                                height={630}
+                            />
+                        </div>
                         <div className="my-4">
                             <div className="flex flex-row items-center justify-start">
                                 <CgCalendarToday className="text-slate-500" /> 
@@ -93,7 +99,7 @@ export default function EventPage({ event }) {
                                 <Date dateString={event.endDate} />
                             </div>
                             {event.desc ? (
-                                <p className="py-4" dangerouslySetInnerHTML={{ __html: `${event.desc}`}}></p>
+                                <p className="py-4">{event.desc}</p>
                             ) : (<></>)}
                         </div>
                     </div>
@@ -103,7 +109,7 @@ export default function EventPage({ event }) {
                         <StoryPart key={i} part={p} />
                     ))}
                 </div>
-            </div>
+            </section>
         </Layout>
     )
 }
