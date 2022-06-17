@@ -1,0 +1,21 @@
+.imgCG {
+    position: relative;
+    left: 3px;
+}
+
+.imgCG > span {
+    max-width: calc(100% - 9px) !important;
+    box-shadow: 6px 6px 0 black !important;
+    border: 6px solid white !important;
+    outline: 3px solid black !important;
+}
+
+/* .chibi {
+    height: 64px !important;
+    width: auto !important;
+    transition: 0.2s !important;
+}
+
+.chibi:hover {
+    height: 80px !important;
+} */

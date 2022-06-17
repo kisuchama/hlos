@@ -5,6 +5,7 @@ import Head from 'next/head'
 import Image from "next/image"
 import Date from '../../components/date';
 import { CgArrowRight, CgCalendarToday } from 'react-icons/cg'
+import styles from '../../components/Image.module.css'
 
 export async function getStaticProps({ params }) {
     const event = await prisma.event.findUnique({
@@ -82,12 +83,14 @@ export default function EventPage({ event }) {
             <section className="grid lg:grid-cols-2 gap-8">
                 <div>
                     <div className="lg:sticky lg:top-4">
-                        <Image
-                            src={`/images/${event.slug}/main.png`}
-                            alt={event.name}
-                            width={2048}
-                            height={1260}
-                        />
+                        <div className={`${styles.imgCG}`}>
+                            <Image
+                                src={`/images/event/${event.slug}/main.jpg`}
+                                alt={event.name}
+                                width={1024}
+                                height={630}
+                            />
+                        </div>
                         <div className="my-4">
                             <div className="flex flex-row items-center justify-start">
                                 <CgCalendarToday className="text-slate-500" /> 
