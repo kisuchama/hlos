@@ -34,8 +34,8 @@ export default function Home({ cameosCounted }) {
       <section className='mt-20 mb-10 max-w-xl mx-auto'>
         <p>mediocre proof of concept for a mobage story database/directory. mostly an exercise to figure out back-end and like serverless function stuff rn but i will be fancifying the fuck out of this now that I have an actual foundation</p>
         <ul className='list-disc leading-loose my-4 text-lg'>
-          <li><Link href="/story"><a className='text-blue-500 hover:underline hover:underline-offset-4'>Main Story test</a></Link></li>
-          <li><Link href="/event/sweet-spell"><a className='text-blue-500 hover:underline hover:underline-offset-4'>Event test</a></Link></li>
+          <li><Link href="/story"><a className='text-slate-400 underline underline-offset-4'>Main Story test</a></Link></li>
+          <li><Link href="/event/sweet-spell"><a className='text-slate-400 underline underline-offset-4'>Event test</a></Link></li>
         </ul>
       </section>
       <section className='mb-20 max-w-xl mx-auto'>
@@ -63,9 +63,9 @@ export default function Home({ cameosCounted }) {
                         height={60} 
                       />
                     </td>
-                  ) : (<td height='88px' width='88px'></td>)}                  
+                  ) : (<td height='88px' width='88px'></td>)}         
                 </>
-                <td className='px-6 py-3'>{h.name}</td>
+                <td className={`px-6 py-3 text-${h.name.toLowerCase()}`}>{h.name}</td>
                 <td className='px-6 py-3 font-mono'>{h._count.mainCameos}</td>
               </tr>     
             ))}

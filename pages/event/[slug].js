@@ -5,7 +5,6 @@ import Head from 'next/head'
 import Image from "next/image"
 import Date from '../../components/date';
 import { CgArrowRight, CgCalendarToday } from 'react-icons/cg'
-import styles from '../../components/Image.module.css'
 
 export async function getStaticProps({ params }) {
     const event = await prisma.event.findUnique({
@@ -77,25 +76,27 @@ export default function EventPage({ event }) {
                 <title>{event.name}</title>
             </Head>
             <section className="text-center mb-12">
-                <h1 className="text-4xl font-bold leading-relaxed">{event.name}</h1>
-                {event.nameJp ? (<h2 className="text-lg text-slate-500 leading-loose">{event.nameJp}</h2>):(<></>)}
+                <h1 className="text-4xl leading-relaxed font-semibold">{event.name}</h1>
+                {event.nameJp ? (<h2 className="text-lg text-slate-400 leading-loose">{event.nameJp}</h2>):(<></>)}
             </section>
             <section className="grid lg:grid-cols-2 gap-8">
                 <div>
                     <div className="lg:sticky lg:top-4">
-                        <div className={`${styles.imgCG}`}>
+                        <div className="imgCG">
                             <Image
                                 src={`/images/event/${event.slug}/main.jpg`}
                                 alt={event.name}
                                 width={1024}
                                 height={630}
+                                quality={100}
+                                priority
                             />
                         </div>
                         <div className="my-4">
                             <div className="flex flex-row items-center justify-start">
-                                <CgCalendarToday className="text-slate-500" /> 
+                                <CgCalendarToday className="text-slate-400" /> 
                                 <Date dateString={event.startDate} /> 
-                                <CgArrowRight className="text-slate-500" /> 
+                                <CgArrowRight className="text-slate-400" /> 
                                 <Date dateString={event.endDate} />
                             </div>
                             {event.desc ? (

@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.imgCG {
+    position: relative;
+    left: 3px;
+}
+
+.imgCG > span {
+    max-width: calc(100% - 18px) !important;
+    box-shadow: 12px 12px 0 black !important;
+    border: 12px solid white !important;
+    outline: 3px solid black !important;
+    margin-bottom: 12px !important;
+}
