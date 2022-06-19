@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
+import { CgArrowLeft } from "react-icons/cg";
 
 const name = "キス.moe";
 export const siteTitle = "キス.moe";
@@ -60,9 +61,10 @@ export default function Layout({ children, home }) {
       </header>
       <main>{children}</main>
       {!home && (
-        <div className="mt-12">
+        <div className="mt-12 flex flex-row items-center justify-start">
+          <CgArrowLeft className="inline-block text-red-600 mr-2"/>
           <Link href="/">
-            <a>← Back to home</a>
+            <a className="link-underline">Back to home</a>
           </Link>
         </div>
       )}
