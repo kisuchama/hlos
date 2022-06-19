@@ -6,7 +6,7 @@ import { CgArrowLeft } from "react-icons/cg";
 const name = "キス.moe";
 export const siteTitle = "キス.moe";
 
-export default function Layout({ children, home }) {
+export default function Layout({ children, home, event }) {
   return (
     <div className="max-w-2xl lg:max-w-5xl py-4 mx-auto mt-12 mb-24">
       <Head>
@@ -60,7 +60,15 @@ export default function Layout({ children, home }) {
         )}
       </header>
       <main>{children}</main>
-      {!home && (
+      {event && (
+        <div className="mt-12 flex flex-row items-center justify-start">
+          <CgArrowLeft className="inline-block mr-2"/>
+          <Link href="/event">
+            <a className="link-underline">Back to event index</a>
+          </Link>
+        </div>
+      )}
+      {!home && !event && (
         <div className="mt-12 flex flex-row items-center justify-start">
           <CgArrowLeft className="inline-block mr-2"/>
           <Link href="/">

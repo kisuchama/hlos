@@ -57,6 +57,8 @@ module.exports = {
   safelist: [
     'text-3xl',
     'text-slate-400',
+    'list-disc',
+    'list-inside',
     {
       pattern: /(bg|text|border)-(south|akira|will|brad|oscar|north|ren|gast|victor|marion|west|junior|faith|keith|dino|east|gray|billy|asch|jay|nova|lily|jack02|jacqueline|siams|shin|sirius)/
     },

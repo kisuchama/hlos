@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Layout, { siteTitle } from '../components/layout';
 import prisma from '../lib/prisma';
+import { CgReadme, CgAlarm } from 'react-icons/cg';
 
 export async function getStaticProps() {
   const cameosCounted = await prisma.hero.findMany({
@@ -33,9 +34,15 @@ export default function Home({ cameosCounted }) {
       </Head>
       <section className='mt-20 mb-10 max-w-xl mx-auto'>
         <p>mediocre proof of concept for a mobage story database/directory. mostly an exercise to figure out back-end and like serverless function stuff rn but i will be fancifying the fuck out of this now that I have an actual foundation</p>
-        <ul className='list-disc my-4 text-lg leading-loose'>
-          <li><Link href="/story"><a className='link-underline leading-normal'>Main Story test</a></Link></li>
-          <li><Link href="/event/sweet-spell"><a className='link-underline leading-normal'>Event test</a></Link></li>
+        <ul className='my-4 leading-loose text-lg'>
+          <li>
+            <CgReadme className="inline-block mr-2"/>
+            <Link href="/story"><a className='link-underline leading-normal'>Main Story</a></Link>
+          </li>
+          <li>
+            <CgAlarm className="inline-block mr-2"/>
+            <Link href="/event"><a className='link-underline leading-normal'>Event Index</a></Link>
+          </li>
         </ul>
       </section>
       <section className='mb-20 max-w-xl mx-auto'>

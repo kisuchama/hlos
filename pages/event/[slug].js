@@ -71,7 +71,7 @@ export async function getStaticPaths() {
 
 export default function EventPage({ event }) {
     return (
-        <Layout>
+        <Layout event>
             <Head>
                 <title>{event.name}</title>
             </Head>
