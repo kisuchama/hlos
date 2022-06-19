@@ -62,7 +62,7 @@ export default function Layout({ children, home }) {
       <main>{children}</main>
       {!home && (
         <div className="mt-12 flex flex-row items-center justify-start">
-          <CgArrowLeft className="inline-block text-red-600 mr-2"/>
+          <CgArrowLeft className="inline-block mr-2"/>
           <Link href="/">
             <a className="link-underline">Back to home</a>
           </Link>

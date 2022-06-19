@@ -1,5 +1,6 @@
 import prisma from '../../lib/prisma'
 import Event from '../../components/Event'
+import Layout from '../../components/layout'
 
 export async function getStaticProps() {
     const allEventsData = await prisma.event.findMany({
@@ -37,10 +38,13 @@ export async function getStaticProps() {
 
 export default function EventIndex({ allEventsData }) {
     return (
-        <ul>
+        <Layout>
+            <h1 className="text-3xl leading-relaxed font-semibold">Event Index</h1>
+            <ul className="list-disc leading-loose">
             {allEventsData.map((e, i) => (
                 <Event key={i} event={e} />
             ))}
         </ul>
+        </Layout>
     )
 }
