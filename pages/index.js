@@ -33,8 +33,12 @@ export default function Home({ cameosCounted }) {
         <title>{siteTitle}</title>
       </Head>
       <section className='my-10 max-w-xl mx-auto'>
-        <p>mediocre proof of concept for a mobage story database/directory. mostly an exercise to figure out back-end and like serverless function stuff rn but i will be fancifying the fuck out of this now that I have an actual foundation</p>
-        <ul className='my-4 leading-loose text-lg'>
+        <p className='text-2xl text-red-600 font-display text-center uppercase'>major work in progress</p>
+        <p className='my-8'>キス.moe is a work-in-progress unofficial <a href='https://helios-r.jp' className='link-underline'><strong>Helios Rising Heroes</strong></a> fansite created with the intent to fill the niche between wiki sites like Fandom and <a href='https://miraheze.org/' className='link-underline'>Miraheze</a>, databases like <a href='https://github.com/MagiCircles' className='link-underline'>MagiCircles</a>, and spreadsheets pinned in Discord servers. Post-launch, I hope to release a template for making similar database sites for other games.<br /><br />
+        This story-oriented database aims to provide a quick and simple way to locate specific chapters players may want to (re)read based on criteria like the characters which appear in them and related event or card stories.<br /><br />
+        The secondary goal is to visualize character cameo trends and provide data from which players can make informed predictions on upcoming events on main story focii.<br /><br />
+        <strong>tl;dr:</strong> WIP ENG HeliosR story database with (future) fancy graphs</p>
+        <ul className='my-4 leading-loose text-xl font-display'>
           <li>
             <CgReadme className="inline-block mr-2"/>
             <Link href="/story"><a className='link-underline leading-normal'>Main Story</a></Link>
