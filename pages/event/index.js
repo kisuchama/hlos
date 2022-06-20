@@ -43,7 +43,7 @@ export default function EventIndex({ allEventsData }) {
             <Head>
                 <title>Event Index</title>
             </Head>
-            <h1 className="text-3xl leading-relaxed font-semibold">Event Index</h1>
+            <h1 className="text-4xl leading-relaxed font-display font-bold mb-8">Event Index</h1>
             <ul className="list-disc list-inside leading-loose">
             {allEventsData.map((e, i) => (
                 <Event key={i} event={e} />

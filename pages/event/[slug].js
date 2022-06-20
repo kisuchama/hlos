@@ -76,7 +76,7 @@ export default function EventPage({ event }) {
                 <title>{event.name}</title>
             </Head>
             <section className="text-center mb-12">
-                <h1 className="text-4xl leading-relaxed font-semibold">{event.name}</h1>
+                <h1 className="text-4xl leading-relaxed font-display font-bold">{event.name}</h1>
                 {event.nameJp ? (<h2 className="text-lg text-slate-400 leading-loose">{event.nameJp}</h2>):(<></>)}
             </section>
             <section className="grid lg:grid-cols-2 gap-8">

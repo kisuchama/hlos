@@ -32,7 +32,7 @@ export default function Home({ cameosCounted }) {
       <Head>
         <title>{siteTitle}</title>
       </Head>
-      <section className='mt-20 mb-10 max-w-xl mx-auto'>
+      <section className='my-10 max-w-xl mx-auto'>
         <p>mediocre proof of concept for a mobage story database/directory. mostly an exercise to figure out back-end and like serverless function stuff rn but i will be fancifying the fuck out of this now that I have an actual foundation</p>
         <ul className='my-4 leading-loose text-lg'>
           <li>
@@ -49,7 +49,7 @@ export default function Home({ cameosCounted }) {
         <table className='table-auto border-collapse w-full'>
           <thead className='bg-slate-200'>
             <tr>
-              <th colSpan="3" className='px-6 py-3 font-semibold text-lg'>Total Main Story Appearances</th>
+              <th colSpan="3" className='px-6 py-3 font-display text-lg'>Total Main Story Appearances</th>
             </tr>
             <tr>
               <th></th>
