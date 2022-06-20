@@ -1,13 +1,14 @@
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
+import { CgArrowLeft } from "react-icons/cg";
 
-const name = "キス.moe";
+const name = "kisu.moe";
 export const siteTitle = "キス.moe";
 
-export default function Layout({ children, home }) {
+export default function Layout({ children, home, event }) {
   return (
-    <div className="max-w-2xl lg:max-w-5xl py-4 mx-auto mt-12 mb-24">
+    <div className="max-w-3xl lg:max-w-5xl py-4 mx-4 md:mx-auto mt-12 mb-24">
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <meta
@@ -34,7 +35,7 @@ export default function Layout({ children, home }) {
               width={144}
               alt={name}
             />
-            <h1 className="text-4xl leading-5 font-extrabold tracking-tighter my-4">{name}</h1>
+            <h1 className="text-4xl font-display tracking-tighter leading-loose my-4">{name}</h1>
           </>
         ) : (
           <>
@@ -59,10 +60,19 @@ export default function Layout({ children, home }) {
         )}
       </header>
       <main>{children}</main>
-      {!home && (
-        <div className="mt-12">
+      {event && (
+        <div className="mt-12 flex flex-row items-center justify-start">
+          <CgArrowLeft className="inline-block mr-2"/>
+          <Link href="/event">
+            <a className="link-underline font-display">Back to event index</a>
+          </Link>
+        </div>
+      )}
+      {!home && !event && (
+        <div className="mt-12 flex flex-row items-center justify-start">
+          <CgArrowLeft className="inline-block mr-2"/>
           <Link href="/">
-            <a>← Back to home</a>
+            <a className="link-underline font-display">Back to home</a>
           </Link>
         </div>
       )}

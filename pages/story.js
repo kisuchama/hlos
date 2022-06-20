@@ -42,7 +42,7 @@ export default function StoryIndex({ story }) {
             <Head>
                 <title>Main Story</title>
             </Head>
-            <h1 className='text-6xl font-extrabold uppercase text-center mb-12'>Main Story</h1>
+            <h1 className='text-6xl font-bold font-display text-center mb-16'>Main Story</h1>
             {story.map((c, i) => (
                 <Chapter key={i} chapter={c} />
             ))}

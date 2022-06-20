@@ -4,10 +4,11 @@
 }
 
 .imgCG > span {
-    max-width: calc(100% - 9px) !important;
-    box-shadow: 6px 6px 0 black !important;
-    border: 6px solid white !important;
+    max-width: calc(100% - 18px) !important;
+    box-shadow: 12px 12px 0 black !important;
+    border: 12px solid white !important;
     outline: 3px solid black !important;
+    margin-bottom: 12px !important;
 }
 
 /* .chibi {
