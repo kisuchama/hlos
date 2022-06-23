@@ -6,14 +6,14 @@ import Layout from '../../components/layout'
 export async function getStaticProps() {
     const allEventsData = await prisma.event.findMany({
         orderBy: {
-            startDate: 'asc',
+            startDate: 'desc',
         },
         select: {
             name: true,
             nameJp: true,
             slug: true,
             startDate: true,
-            // endDate: true,
+            endDate: true,
             sector: {
                 select: {
                     location: true,
@@ -24,6 +24,21 @@ export async function getStaticProps() {
                     name: true,
                 },
             },
+            parts: {
+                select: {
+                    cameos: {
+                        select: {
+                            hero: {
+                                select: {
+                                    id: true,
+                                    name: true,
+                                    chibi: true, 
+                                },
+                            },
+                        },
+                    },
+                },
+            },
             _count: {
                 select: { parts: true },
             },
@@ -32,7 +47,7 @@ export async function getStaticProps() {
 
     for (const event of allEventsData) {
         event.startDate = event.startDate.toISOString()
-        // event.endDate = event.endDate.toISOString()
+        event.endDate = event.endDate.toISOString()
     }
 
     return {

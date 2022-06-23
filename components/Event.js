@@ -1,15 +1,50 @@
 import Link from "next/link";
 import Image from "next/image";
+import Date from "./date";
+import Cameo from "./Cameo";
+import { CgArrowRight, CgCalendarToday } from 'react-icons/cg';
+import { MdTranslate } from 'react-icons/md';
 
 export default function Event({ event }) {
+    const distinctCameos = []
+    var c = '';
+    var h = '';
+    // limited to playable characters
+    for ( var id = 1; id < 17; id++) {
+        for ( var i=0; i < event.parts.length; i++) {
+            c = event.parts[i].cameos
+            for ( var j=0; j < c.length; j++) {
+                h = c[j].hero
+                if ((!distinctCameos.includes(h.name)) &&
+                    (h.id == id)) {
+                        distinctCameos.push(h.name)
+                    }
+            }
+        }
+    }
+    
+    // for ( var i=0; i < event.parts.length; i++) {
+    //     c = event.parts[i].cameos
+    //     for ( var j=0; j < c.length; j++) {
+    //         h = c[j].hero
+    //         if ((!distinctCameos.includes(h.name)) &&
+    //             (h.chibi)) {
+    //                 distinctCameos.push(h.name)
+    //             }
+    //     }
+    // }
+
+    // for (const e in event) {
+    //     console.log(e.parts.cameos.hero.name)
+    //     if ((!distinctCameos.includes(e.parts.cameos.hero.name)) &&
+    //         (e.parts.cameos.hero.chibi)) {
+    //         distinctCameos.push(e.parts.cameos.hero.name)
+    //     }
+    // }
     return (
-        <div>
-            <Link href={`/event/${event.slug}`}><a className="relative">
-                <div className="z-20 absolute inset-0 flex mb-10 ml-5 mt-5 pr-10">
-                    <h2 className="text-3xl lg:text-2xl font-display px-2 highlight self-end"><span>{event.name}</span></h2>
-                    <p className="text-4xl lg:text-3xl font-display highlight"><span>PT.{event._count.parts}</span></p>
-                </div>
-                <div className="imgCG">
+        <div className="indexCG flex flex-col">
+            <Link href={`/event/${event.slug}`}><a>
+                <div>
                     <Image
                         src={`/images/event/${event.slug}/main.jpg`}
                         alt={event.name}
@@ -18,7 +53,71 @@ export default function Event({ event }) {
                         className="z-0 absolute inset-0"
                     />
                 </div>
+                {event.sector ? (
+                    <hr className={`border-0 h-[3px] bg-${event.sector.location.toLowerCase()}`} />
+                ) : (
+                    <></>
+                )}
+                {event.hero ? (
+                    <hr className={`border-0 h-[3px] bg-${event.hero.name.toLowerCase()}`} />
+                ) : (
+                    <></>
+                )}
+                {!event.sector && !event.hero ? (
+                    <hr className="border-0 h-[3px] bg-black" />
+                ) : (
+                    <></>
+                )}                 
             </a></Link>
+            <div className="indexCaption flex flex-col space-y-6 justify-between h-full">
+                <h2 className="text-2xl lg:text-xl font-display">{event.name}</h2>
+                
+                <div className="flex flex-row mx-2 h-16 items-center justify-center">
+                    {distinctCameos.map((h, i) => (
+                        <Link key={i} href={`/chara/${h.toLowerCase()}`}>
+                            <a className="h-80px w-88px relative inline-block">
+                                <Image
+                                    src={`/images/chibi/${h.toLowerCase()}.png`}
+                                    alt={h}
+                                    width={66}
+                                    height={60} 
+                                />
+                            </a>
+                        </Link>
+                    ))}
+                </div>
+                <div className="text-sm self-end flex flex-row w-full">
+                    <div className="self-end flex flex-row justify-between grow">
+                        <div className="flex flex-row items-center">
+                            <CgCalendarToday className="text-slate-400" /> 
+                            <Date dateString={event.startDate} /> 
+                            <CgArrowRight className="text-slate-400" /> 
+                            <Date dateString={event.endDate} />
+                        </div>
+                        <div classname="flex flex-row items-center">
+                            <MdTranslate className="inline-block mx-1" /> <a href="#" className="link-underline">@translator</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }
+
+{/* <div>
+    <Link href={`/event/${event.slug}`}><a className="relative">
+        <div className="z-20 absolute inset-0 flex mb-10 ml-5 mt-5 pr-10">
+            <h2 className="text-3xl lg:text-2xl font-display px-2 highlight self-end"><span>{event.name}</span></h2>
+            <p className="text-4xl lg:text-3xl font-display highlight"><span>PT.{event._count.parts}</span></p>
+        </div>
+        <div className="imgCG">
+            <Image
+                src={`/images/event/${event.slug}/main.jpg`}
+                alt={event.name}
+                width={1024}
+                height={630}
+                className="z-0 absolute inset-0"
+            />
+        </div>
+    </a></Link>
+</div> */}

@@ -5,6 +5,7 @@
 .imgCG {
     position: relative;
     left: 3px;
+    /* transition: transform 0.3s ease-in-out; */
 }
 
 .imgCG > span {
@@ -13,7 +14,35 @@
     border: 12px solid white !important;
     outline: 3px solid black !important;
     margin-bottom: 12px !important;
+    /* transition: box-shadow 0.3s ease-in-out; */
 }
+
+.indexCG {
+  position: relative;
+  left: 3px;
+  box-shadow: 12px 12px 0 black;
+  border: 12px solid white;
+  outline: 3px solid black;
+  margin-bottom: 12px;
+}
+
+.indexCG > a > div > span {
+  margin-bottom: 6px !important;
+}
+
+.indexCG > .indexCaption {
+  padding: 12px 3px 6px;
+}
+
+/* a .imgCG:hover {
+    transform: translate(12px, 12px);
+}
+
+a .imgCG:hover > span {
+  box-shadow: transparent;
+} */
+
+/* WHITE HIGHLIGHT */
 
 .highlight {
   --lineHeight: 1.4em;
