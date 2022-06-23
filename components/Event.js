@@ -94,7 +94,7 @@ export default function Event({ event }) {
                             <CgArrowRight className="text-slate-400" /> 
                             <Date dateString={event.endDate} />
                         </div>
-                        <div classname="flex flex-row items-center">
+                        <div className="flex flex-row items-center">
                             <MdTranslate className="inline-block mx-1" /> <a href="#" className="link-underline">@translator</a>
                         </div>
                     </div>
