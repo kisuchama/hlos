@@ -67,7 +67,12 @@ module.exports = {
       pattern: /mb-(8|12)/
     },
     {
-      pattern: /(bg|text|border)-(south|akira|will|brad|oscar|north|ren|gast|victor|marion|west|junior|faith|keith|dino|east|gray|billy|asch|jay|nova|lily|jack02|jacqueline|siams|shin|sirius)/
+      pattern: /z-(0|10|20)/,
+      variants: 'before',
+    },
+    {
+      pattern: /(bg|text|border)-(south|akira|will|brad|oscar|north|ren|gast|victor|marion|west|junior|faith|keith|dino|east|gray|billy|asch|jay|nova|lily|jack02|jacqueline|siams|shin|sirius)/,
+      variants: ['before', 'hover'],
     },
   ],
 }

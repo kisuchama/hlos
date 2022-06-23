@@ -13,7 +13,7 @@ export async function getStaticProps() {
             nameJp: true,
             slug: true,
             startDate: true,
-            endDate: true,
+            // endDate: true,
             sector: {
                 select: {
                     location: true,
@@ -24,12 +24,15 @@ export async function getStaticProps() {
                     name: true,
                 },
             },
+            _count: {
+                select: { parts: true },
+            },
         },
     })
 
     for (const event of allEventsData) {
         event.startDate = event.startDate.toISOString()
-        event.endDate = event.endDate.toISOString()
+        // event.endDate = event.endDate.toISOString()
     }
 
     return {
@@ -44,11 +47,11 @@ export default function EventIndex({ allEventsData }) {
                 <title>Event Index</title>
             </Head>
             <h1 className="text-4xl leading-relaxed font-display font-bold mb-8">Event Index</h1>
-            <ul className="list-disc list-inside leading-loose">
-            {allEventsData.map((e, i) => (
-                <Event key={i} event={e} />
-            ))}
-        </ul>
+            <div className="grid lg:grid-cols-2 gap-8">
+                {allEventsData.map((e, i) => (
+                    <Event key={i} event={e} />
+                ))}
+            </div>
         </Layout>
     )
 }
