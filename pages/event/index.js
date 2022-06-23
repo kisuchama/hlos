@@ -6,7 +6,7 @@ import Layout from '../../components/layout'
 export async function getStaticProps() {
     const allEventsData = await prisma.event.findMany({
         orderBy: {
-            startDate: 'asc',
+            startDate: 'desc',
         },
         select: {
             name: true,
@@ -23,6 +23,24 @@ export async function getStaticProps() {
                 select: {
                     name: true,
                 },
+            },
+            parts: {
+                select: {
+                    cameos: {
+                        select: {
+                            hero: {
+                                select: {
+                                    id: true,
+                                    name: true,
+                                    chibi: true, 
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+            _count: {
+                select: { parts: true },
             },
         },
     })
@@ -44,11 +62,11 @@ export default function EventIndex({ allEventsData }) {
                 <title>Event Index</title>
             </Head>
             <h1 className="text-4xl leading-relaxed font-display font-bold mb-8">Event Index</h1>
-            <ul className="list-disc list-inside leading-loose">
-            {allEventsData.map((e, i) => (
-                <Event key={i} event={e} />
-            ))}
-        </ul>
+            <div className="grid lg:grid-cols-2 gap-8">
+                {allEventsData.map((e, i) => (
+                    <Event key={i} event={e} />
+                ))}
+            </div>
         </Layout>
     )
 }
