@@ -11,9 +11,9 @@ datasource db {
 
 model Appellation {
   appellation String
-  hero        Hero    @relation("Namee", fields: [heroId], references: [id])
+  hero        Hero   @relation("Namee", fields: [heroId], references: [id])
   heroId      Int
-  caller      Hero    @relation("Caller", fields: [callerId], references: [id])
+  caller      Hero   @relation("Caller", fields: [callerId], references: [id])
   callerId    Int
 
   @@id([heroId, callerId])
@@ -23,8 +23,9 @@ model Card {
   id          Int           @id @default(autoincrement())
   title       String?
   titleJp     String?
-  hero        Hero          @relation(fields:[heroId], references:[id])
+  hero        Hero          @relation(fields: [heroId], references: [id])
   heroId      Int
+  rarity      Int
   event       Event         @relation(fields: [eventId], references: [id])
   eventId     Int
   translation Translation[]
@@ -34,10 +35,10 @@ model Card {
 }
 
 model CardCameo {
-  hero    Hero  @relation(fields: [heroId], references: [id])
-  heroId  Int
-  card    Card  @relation(fields: [cardId], references: [id])
-  cardId  Int
+  hero   Hero @relation(fields: [heroId], references: [id])
+  heroId Int
+  card   Card @relation(fields: [cardId], references: [id])
+  cardId Int
 
   @@id([heroId, cardId])
 }
@@ -61,21 +62,21 @@ model Event {
 }
 
 model EventCameo {
-  hero    Hero      @relation(fields: [heroId], references: [id])
-  heroId  Int
-  part    EventPart @relation(fields: [partId], references: [id])
-  partId  Int
+  hero   Hero      @relation(fields: [heroId], references: [id])
+  heroId Int
+  part   EventPart @relation(fields: [partId], references: [id])
+  partId Int
 
   @@id([heroId, partId])
 }
 
 model EventPart {
-  id            Int          @id @default(autoincrement())
-  event         Event        @relation(fields: [eventId], references: [id])
-  eventId       Int
-  part          Int
-  cameos        EventCameo[]
-  translation   Translation[]
+  id          Int           @id @default(autoincrement())
+  event       Event         @relation(fields: [eventId], references: [id])
+  eventId     Int
+  part        Int
+  cameos      EventCameo[]
+  translation Translation[]
 
   @@index([eventId])
 }
@@ -114,8 +115,8 @@ model MainCameo {
 }
 
 model MainPart {
-  id          Int        @id @default(autoincrement())
-  chapter     MainStory  @relation(fields: [chapterId], references: [id])
+  id          Int         @id @default(autoincrement())
+  chapter     MainStory   @relation(fields: [chapterId], references: [id])
   chapterId   Int
   part        Int
   translation String?
@@ -125,7 +126,7 @@ model MainPart {
 }
 
 model MainStory {
-  id      Int         @id @default(autoincrement())
+  id      Int        @id @default(autoincrement())
   name    String
   season  Int
   chapter Int
@@ -142,20 +143,63 @@ model Sector {
 }
 
 model Translation {
-  id            Int         @id @default(autoincrement())
-  link          String
-  translator    Translator  @relation(fields:[translatorId], references: [id])
-  translatorId  Int
-  eventPart     EventPart?  @relation(fields:[eventPartId], references: [id])
-  eventPartId   Int?
-  card          Card?       @relation(fields:[cardId], references: [id])
-  cardId        Int?
+  id           Int        @id @default(autoincrement())
+  link         String
+  translator   Translator @relation(fields: [translatorId], references: [id])
+  translatorId Int
+  eventPart    EventPart? @relation(fields: [eventPartId], references: [id])
+  eventPartId  Int?
+  card         Card?      @relation(fields: [cardId], references: [id])
+  cardId       Int?
 }
 
 model Translator {
-  id            Int           @id @default(autoincrement())
-  name          String
-  url           String?
-  twitter       String?
-  translations  Translation[]
+  id           Int           @id @default(autoincrement())
+  name         String
+  url          String?
+  twitter      String?
+  translations Translation[]
+}
+
+model cd7032_a86a_57dc_b57f_a72436166bf1_20220624232806_vrepl {
+  id          Int     @id @default(autoincrement())
+  eventId     Int
+  part        Int
+  translation String?
+
+  @@index([eventId], map: "EventPart_eventId_idx")
+  @@map("_11cd7032_a86a_57dc_b57f_a72436166bf1_20220624232806_vrepl")
+}
+
+model db9da57_4746_55d0_8947_7b701dba2cf8_20220624232802_vrepl {
+  id          Int     @id @default(autoincrement())
+  title       String?
+  titleJp     String?
+  heroId      Int
+  eventId     Int
+  translation String?
+
+  @@index([heroId, eventId], map: "Card_heroId_eventId_idx")
+  @@map("_3db9da57_4746_55d0_8947_7b701dba2cf8_20220624232802_vrepl")
+}
+
+model f1f3a_5b89_55bb_9fc5_e35758f73607_20220624233102_vrepl {
+  id      Int     @id @default(autoincrement())
+  name    String
+  url     String?
+  twtURL  String?
+  twitter String?
+
+  @@map("_872f1f3a_5b89_55bb_9fc5_e35758f73607_20220624233102_vrepl")
+}
+
+model c6a1a5d2_9d7f_518e_bb2e_9198d064396d_20220624234805_vrepl {
+  id      Int     @id @default(autoincrement())
+  title   String?
+  titleJp String?
+  heroId  Int
+  eventId Int
+
+  @@index([heroId, eventId], map: "Card_heroId_eventId_idx")
+  @@map("_c6a1a5d2_9d7f_518e_bb2e_9198d064396d_20220624234805_vrepl")
 }
