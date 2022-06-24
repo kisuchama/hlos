@@ -31,9 +31,9 @@ export default function StoryFilter() {
         const cameoToggles = document.querySelectorAll(".charaToggle")
         
         clearCameos.forEach(part => {
-            part.classList.add("invisible", "h-0")
+            part.classList.add("hidden")
             if (part.classList.contains('tag' + chara)) {
-                part.classList.remove("invisible", "h-0")
+                part.classList.remove("hidden")
             }
         })
 
@@ -56,7 +56,7 @@ export default function StoryFilter() {
             <button id="filterToggle" className={`fixed z-50 right-12 top-12 bg-black p-2 ${showFilters ? "mr-64" : ""}`} onClick={toggleFilters}>
                 <MdFilterList className="text-4xl text-white" />
             </button>
-            <div id="storyFilters" className={`h-screen w-full bg-white sm:w-80 fixed z-40 top-0 -right-full overflow-x-hidden p-12 border-l-[3px] ${showFilters ? "mr-80" : ""}`}>
+            <div id="storyFilters" className={`h-screen max-w-full bg-white sm:w-80 fixed z-40 top-0 -right-full sm:-right-80 overflow-x-hidden p-12 border-l-[3px] ${showFilters ? "mr-80" : ""}`}>
                 <h1 className="text-3xl font-display uppercase">Filters</h1>
                 <h2 className="text-2xl font-display mt-8">Characters</h2>
                 <div className="grid grid-cols-3 sm:grid-cols-4 mt-4 gap-y-4 sm:gap-2">
