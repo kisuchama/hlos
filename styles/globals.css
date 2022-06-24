@@ -34,17 +34,15 @@
   padding: 12px 3px 6px;
 }
 
-/* a .imgCG:hover {
-    transform: translate(12px, 12px);
-}
+/* OFF CANVAS */
 
-a .imgCG:hover > span {
-  box-shadow: transparent;
-} */
+#filterToggle, #storyFilters {
+  transition: margin-right 0.5s ease-in-out;
+}
 
 /* WHITE HIGHLIGHT */
 
-.highlight {
+/* .highlight {
   --lineHeight: 1.4em;
 }
 
@@ -54,7 +52,7 @@ a .imgCG:hover > span {
   background: linear-gradient(white 0 0) 0/100% var(--lineHeight) no-repeat;
   box-decoration-break: clone;
   -webkit-box-decoration-break: clone;
-}
+} */
 
 /* LINK UNDERLINE */
 
