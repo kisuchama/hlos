@@ -20,14 +20,14 @@ model Appellation {
 }
 
 model Card {
-  id          Int         @id @default(autoincrement())
+  id          Int           @id @default(autoincrement())
   title       String?
   titleJp     String?
-  hero        Hero        @relation(fields:[heroId], references:[id])
+  hero        Hero          @relation(fields:[heroId], references:[id])
   heroId      Int
-  event       Event       @relation(fields: [eventId], references: [id])
+  event       Event         @relation(fields: [eventId], references: [id])
   eventId     Int
-  translation String?
+  translation Translation[]
   cameos      CardCameo[]
 
   @@index([heroId, eventId])
@@ -70,12 +70,12 @@ model EventCameo {
 }
 
 model EventPart {
-  id          Int          @id @default(autoincrement())
-  event       Event        @relation(fields: [eventId], references: [id])
-  eventId     Int
-  part        Int
-  translation String?
-  cameos      EventCameo[]
+  id            Int          @id @default(autoincrement())
+  event         Event        @relation(fields: [eventId], references: [id])
+  eventId       Int
+  part          Int
+  cameos        EventCameo[]
+  translation   Translation[]
 
   @@index([eventId])
 }
@@ -139,4 +139,23 @@ model Sector {
   hex      String? @db.Char(7)
   heroes   Hero[]
   events   Event[]
+}
+
+model Translation {
+  id            Int         @id @default(autoincrement())
+  link          String
+  translator    Translator  @relation(fields:[translatorId], references: [id])
+  translatorId  Int
+  eventPart     EventPart?  @relation(fields:[eventPartId], references: [id])
+  eventPartId   Int?
+  card          Card?       @relation(fields:[cardId], references: [id])
+  cardId        Int?
+}
+
+model Translator {
+  id            Int           @id @default(autoincrement())
+  name          String
+  url           String?
+  twitter       String?
+  translations  Translation[]
 }
