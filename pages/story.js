@@ -3,7 +3,6 @@ import Layout from '../components/layout'
 import Head from 'next/head'
 import Chapter from '../components/Chapters'
 import dynamic from 'next/dynamic'
-import Script from 'next/script'
 
 export async function getStaticProps() {
     const story = await prisma.mainStory.findMany({

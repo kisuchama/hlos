@@ -6,14 +6,13 @@ import { CgArrowRight, CgCalendarToday } from 'react-icons/cg';
 import { MdTranslate } from 'react-icons/md';
 
 export default function Event({ event }) {
-    // console.log(event.translator[0].translator)
-    // const translator = event.translator[0].translator.name
     const eventTranslators = []
     for ( var k = 0; k < event.translator.length; k++) {
         eventTranslators.push(event.translator[0].translator.name)
     }
     
     const distinctCameos = []
+    const cameoClasses = []
     var c = '';
     var h = '';
     // limited to playable characters
@@ -29,8 +28,11 @@ export default function Event({ event }) {
             }
         }
     }
+    for ( var x = 0; x < distinctCameos.length; x++ ) {
+        cameoClasses.push('tag' + distinctCameos[x])
+    }
     return (
-        <div className="indexCG flex flex-col">
+        <div className={`indexCG flex flex-col ${cameoClasses.join(' ')}`}>
             <Link href={`/event/${event.slug}`}><a>
                 <div>
                     <Image

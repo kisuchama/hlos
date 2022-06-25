@@ -18,7 +18,7 @@ import Image from "next/image";
 //     }
 // }
 
-export default function StoryFilter() {
+export default function StoryFilter({ page }) {
     const [showFilters, setShowFilters] = useState(false);
     const [showCameos, setShowCameos] = useState(false);
     function toggleFilters() {
@@ -27,7 +27,13 @@ export default function StoryFilter() {
 
     function filterChara(chara) {
         setShowCameos(!showCameos)
-        const clearCameos = document.querySelectorAll(".partDiv")
+        var clearCameos = []
+        if (page == 'eventIndex') {
+            clearCameos = document.querySelectorAll(".indexCG")
+        } else {
+            clearCameos = document.querySelectorAll(".partDiv")
+        }
+        
         const cameoToggles = document.querySelectorAll(".charaToggle")
         
         clearCameos.forEach(part => {
