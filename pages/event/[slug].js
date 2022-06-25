@@ -79,7 +79,7 @@ export async function getStaticPaths() {
 }
 
 export default function EventPage({ event }) {
-    const translator = event.translator[0].translator.name
+    // const translator = event.translator[0].translator.name
     return (
         <Layout event>
             <Head>
