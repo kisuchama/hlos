@@ -42,6 +42,15 @@ export async function getStaticProps() {
             _count: {
                 select: { parts: true },
             },
+            translator: {
+                select: {
+                    translator: {
+                        select: {
+                            name: true,
+                        },
+                    },
+                },
+            },
         },
     })
 

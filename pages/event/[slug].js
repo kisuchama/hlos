@@ -43,6 +43,15 @@ export async function getStaticProps({ params }) {
                     },
                 },
             },
+            translator: {
+                select: {
+                    translator: {
+                        select: {
+                            name: true,
+                        },
+                    },
+                },
+            },
             cards: true,
         },
     })
@@ -70,6 +79,7 @@ export async function getStaticPaths() {
 }
 
 export default function EventPage({ event }) {
+    const translator = event.translator[0].translator.name
     return (
         <Layout event>
             <Head>

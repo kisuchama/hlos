@@ -44,19 +44,20 @@ model CardCameo {
 }
 
 model Event {
-  id        Int         @id @default(autoincrement())
-  name      String
-  nameJp    String?
-  desc      String?     @db.Text
-  startDate DateTime    @db.Date
-  endDate   DateTime    @db.Date
-  sector    Sector?     @relation(fields: [sectorId], references: [id])
-  sectorId  Int?
-  hero      Hero?       @relation(fields: [heroId], references: [id])
-  heroId    Int?
-  slug      String      @unique
-  parts     EventPart[]
-  cards     Card[]
+  id          Int               @id @default(autoincrement())
+  name        String
+  nameJp      String?
+  desc        String?           @db.Text
+  startDate   DateTime          @db.Date
+  endDate     DateTime          @db.Date
+  sector      Sector?           @relation(fields: [sectorId], references: [id])
+  sectorId    Int?
+  hero        Hero?             @relation(fields: [heroId], references: [id])
+  heroId      Int?
+  slug        String            @unique
+  translator  EventTranslator[]
+  parts       EventPart[]
+  cards       Card[]
 
   @@index([sectorId, heroId])
 }
@@ -79,6 +80,15 @@ model EventPart {
   translation Translation[]
 
   @@index([eventId])
+}
+
+model EventTranslator {
+  event         Event       @relation(fields: [eventId], references: [id])
+  eventId       Int
+  translator    Translator  @relation(fields: [translatorId], references: [id])
+  translatorId  Int
+
+  @@id([eventId, translatorId])
 }
 
 model Hero {
@@ -154,52 +164,10 @@ model Translation {
 }
 
 model Translator {
-  id           Int           @id @default(autoincrement())
+  id           Int                @id @default(autoincrement())
   name         String
   url          String?
   twitter      String?
   translations Translation[]
-}
-
-model cd7032_a86a_57dc_b57f_a72436166bf1_20220624232806_vrepl {
-  id          Int     @id @default(autoincrement())
-  eventId     Int
-  part        Int
-  translation String?
-
-  @@index([eventId], map: "EventPart_eventId_idx")
-  @@map("_11cd7032_a86a_57dc_b57f_a72436166bf1_20220624232806_vrepl")
-}
-
-model db9da57_4746_55d0_8947_7b701dba2cf8_20220624232802_vrepl {
-  id          Int     @id @default(autoincrement())
-  title       String?
-  titleJp     String?
-  heroId      Int
-  eventId     Int
-  translation String?
-
-  @@index([heroId, eventId], map: "Card_heroId_eventId_idx")
-  @@map("_3db9da57_4746_55d0_8947_7b701dba2cf8_20220624232802_vrepl")
-}
-
-model f1f3a_5b89_55bb_9fc5_e35758f73607_20220624233102_vrepl {
-  id      Int     @id @default(autoincrement())
-  name    String
-  url     String?
-  twtURL  String?
-  twitter String?
-
-  @@map("_872f1f3a_5b89_55bb_9fc5_e35758f73607_20220624233102_vrepl")
-}
-
-model c6a1a5d2_9d7f_518e_bb2e_9198d064396d_20220624234805_vrepl {
-  id      Int     @id @default(autoincrement())
-  title   String?
-  titleJp String?
-  heroId  Int
-  eventId Int
-
-  @@index([heroId, eventId], map: "Card_heroId_eventId_idx")
-  @@map("_c6a1a5d2_9d7f_518e_bb2e_9198d064396d_20220624234805_vrepl")
+  events       EventTranslator[]
 }
