@@ -29,7 +29,7 @@ export default function StoryFilter({ page }) {
       percentPosition: true,
       itemSelector : '.filter-item',
       masonry:{
-        gutter: 20
+        gutter: 20,
       }
     })
     // cleanup
