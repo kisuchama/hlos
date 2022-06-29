@@ -7,6 +7,15 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    container: {
+      padding: {
+        DEFAULT: '1rem',
+        sm: '2rem',
+        lg: '4rem',
+        xl: '5rem',
+        '2xl': '6rem',
+      },
+    },
     colors: {
       transparent: 'transparent',
       current: 'currentColor',
@@ -63,6 +72,9 @@ module.exports = {
     'list-disc',
     'list-inside',
     'font-display',
+    '2xl:grid-cols-3',
+    'gap-8',
+    '2xl:gap-4',
     {
       pattern: /mb-(8|12)/
     },
