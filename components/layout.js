@@ -8,7 +8,7 @@ export const siteTitle = "キス.moe";
 
 export default function Layout({ children, home, event }) {
   return (
-    <div className="container mx-auto  py-4 mt-12 mb-24">
+    <div className="container mx-auto py-4 mt-2 sm:mt-12 mb-24">
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <meta

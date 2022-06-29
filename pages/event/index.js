@@ -80,7 +80,7 @@ export default function EventIndex({ allEventsData }) {
             <Script src="../../public/isotope-fit-columns.js" />
 
             <DynamicFilter page='eventIndex' />
-            <h1 className="text-4xl leading-relaxed font-display font-bold mb-8">Event Index</h1>
+            <h1 className="text-4xl font-display font-bold mb-8">Event Index</h1>
             <div className="filter-container">
                 <div className="filter-sizer"></div>
                 {allEventsData.map((e, i) => (
