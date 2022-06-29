@@ -3,6 +3,7 @@ import Event from '../../components/Event'
 import Head from 'next/head'
 import Layout from '../../components/layout'
 import dynamic from 'next/dynamic'
+import Script from 'next/script'
 
 export async function getStaticProps() {
     const allEventsData = await prisma.event.findMany({
@@ -76,9 +77,12 @@ export default function EventIndex({ allEventsData }) {
                 <title>Event Index</title>
             </Head>
 
+            <Script src="../../public/isotope-fit-columns.js" />
+
             <DynamicFilter page='eventIndex' />
             <h1 className="text-4xl leading-relaxed font-display font-bold mb-8">Event Index</h1>
-            <div className="grid lg:grid-cols-2 2xl:grid-cols-3 gap-8 2xl:gap-4">
+            <div className="filter-container">
+                <div className="filter-sizer"></div>
                 {allEventsData.map((e, i) => (
                     <Event key={i} event={e} />
                 ))}

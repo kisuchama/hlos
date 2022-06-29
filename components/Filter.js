@@ -1,73 +1,73 @@
 import { MdFilterList } from "react-icons/md"
-import { useState } from "react";
+import { CgCloseR } from "react-icons/cg";
+import { useRef, useState, useEffect } from "react";
+import Isotope from "isotope-layout";
 import Image from "next/image";
-// import Script from "next/script";
-
-// export async function getStaticProps() {
-//     const heroes = await prisma.hero.findMany({
-//         // where: {
-//         //     id: { lte: 16 },
-//         // },
-//         select: {
-//             name: true,
-//         },
-//     })
-
-//     return {
-//         props: { heroes }
-//     }
-// }
 
 export default function StoryFilter({ page }) {
     const [showFilters, setShowFilters] = useState(false);
-    const [showCameos, setShowCameos] = useState(false);
     function toggleFilters() {
         setShowFilters(!showFilters)
-    }
-
-    function filterChara(chara) {
-        setShowCameos(!showCameos)
-        var clearCameos = []
-        if (page == 'eventIndex') {
-            clearCameos = document.querySelectorAll(".indexCG")
-        } else {
-            clearCameos = document.querySelectorAll(".partDiv")
-        }
-        
-        const cameoToggles = document.querySelectorAll(".charaToggle")
-        
-        clearCameos.forEach(part => {
-            part.classList.add("hidden")
-            if (part.classList.contains('tag' + chara)) {
-                part.classList.remove("hidden")
-            }
-        })
-
-        cameoToggles.forEach(button => {
-            button.classList.add("bg-transparent")
-            if(button.classList.contains('filter' + chara)) {
-                button.classList.remove("bg-transparent")
-            }
-        })
     }
 
     const heroes = [
         'Akira','Will','Brad','Oscar',
         'Ren','Gast','Victor','Marion',
         'Junior','Faith','Keith','Dino',
-        'Gray','Billy','Asch','Jay']
+        'Gray','Billy','Asch','Jay'
+    ]
+
+    // ISOTOPE
+    // init one ref to store the future isotope object
+  const isotope = useRef()
+  // store the filter keyword in a state
+  const [filterKey, setFilterKey] = useState('*')
+
+  // initialize an Isotope object with configs
+  useEffect(() => {
+    isotope.current = new Isotope('.filter-container',{
+      percentPosition: true,
+      itemSelector : '.filter-item',
+      masonry:{
+        gutter: 20
+      }
+    })
+    // cleanup
+    return () => isotope.current.destroy()
+  }, [])
+
+  // handling filter key change
+  useEffect(() => {
+    filterKey === '*'
+      ? isotope.current.arrange({filter: `*`})
+      : isotope.current.arrange({filter: `${filterKey}`})
+  }, [filterKey])
+
+  const filterToggles = document.querySelectorAll(".filter-tag")
+
+  function handleFilterKeyChange(key) {
+    key === '*'
+      ? setFilterKey('*')
+      : setFilterKey(`.tag${key}`)
+    filterToggles.forEach(tag => {
+      tag.classList.contains(`bg-${key.toLowerCase()}`)
+        ? tag.classList.remove("bg-transparent")
+        : tag.classList.add("bg-transparent")
+    })
+  }
+
     return (
         <>
-            {/* <Script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/jquery-ui.min.js"></Script> */}
-            <button id="filterToggle" className={`fixed z-50 right-12 top-12 bg-black p-2 ${showFilters ? "mr-64" : ""}`} onClick={toggleFilters}>
+            <button id="filterToggle" className={`fixed z-50 right-12 top-12 bg-black p-2 ${showFilters ? "mr-80" : ""}`} onClick={toggleFilters}>
                 <MdFilterList className="text-4xl text-white" />
             </button>
-            <div id="storyFilters" className={`h-screen max-w-full bg-white sm:w-80 fixed z-40 top-0 -right-full sm:-right-80 overflow-x-hidden p-12 border-l-[3px] ${showFilters ? "mr-80" : ""}`}>
+            <div id="storyFilters" className={`h-screen max-w-full bg-white sm:w-96 fixed z-40 top-0 -right-full sm:-right-96 overflow-x-hidden p-12 border-l-[3px] ${showFilters ? "mr-96" : ""}`}>
                 <h1 className="text-3xl font-display uppercase">Filters</h1>
-                <h2 className="text-2xl font-display mt-8">Characters</h2>
-                <div className="grid grid-cols-3 sm:grid-cols-4 mt-4 gap-y-4 sm:gap-2">
+                <h2 className="text-2xl font-display mt-8 flex flex-row items-center">Characters <CgCloseR className="ml-2 text-3xl text-slate-400 hover:text-black" onClick={() => handleFilterKeyChange('*')} /></h2>
+                <div className="filter-group max-w-full grid grid-cols-3 sm:grid-cols-4 mt-4 gap-y-4 sm:gap-2" data-filter-group="hero">
                 {heroes.map((h, i) => (
-                    <a key={i} className={`charaToggle filter${h} bg-${h.toLowerCase()} bg-transparent w-16 h-16 sm:w-14 sm:h-14 flex justify-center items-center rounded-full`} onClick={() => filterChara(h)}>
+                    <a key={i} className={`filter-tag w-16 h-16 flex justify-center items-center rounded-full bg-${h.toLowerCase()} bg-transparent`}
+                      onClick={() => handleFilterKeyChange(h)}>
                         <Image
                             src={`/images/chibi/${h.toLowerCase()}.png`}
                             alt={h}

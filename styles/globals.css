@@ -27,10 +27,27 @@
   margin-bottom: 12px;
 }
 
-@media (min-width: 1536px) { 
-  .indexCG {
+.filter-sizer {
+  max-width: calc(100% - 18px) !important;
+}
+
+.filter-item {
+  margin-bottom: 20px;
+}
+
+@media (min-width: 1024px) {
+  .filter-sizer, .indexCG {
+    width: calc(50% - 20px);
     max-width: calc(100% - 12px) !important;
+  }
+  .indexCG {
     box-shadow: 8px 8px 0 black;
+  }
+}
+
+@media (min-width: 1536px) { 
+  .filter-sizer, .indexCG {
+    width: calc(100% / 3 - 20px);
   }
 }
 

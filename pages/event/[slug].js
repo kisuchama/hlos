@@ -91,7 +91,7 @@ export default function EventPage({ event }) {
             </section>
             <section className="grid lg:grid-cols-2 gap-8">
                 <div>
-                    <div className="lg:sticky lg:top-4">
+                    <div className="lg:sticky lg:top-8">
                         <div className="imgCG">
                             <Image
                                 src={`/images/event/${event.slug}/main.jpg`}

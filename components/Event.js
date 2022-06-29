@@ -32,7 +32,7 @@ export default function Event({ event }) {
         cameoClasses.push('tag' + distinctCameos[x])
     }
     return (
-        <div className={`indexCG flex flex-col ${cameoClasses.join(' ')}`}>
+        <div className={`filter-item indexCG flex flex-col ${cameoClasses.join(' ')}`}>
             <Link href={`/event/${event.slug}`}><a>
                 <div>
                     <Image
