@@ -82,7 +82,6 @@ export default function EventIndex({ allEventsData }) {
             <DynamicFilter page='eventIndex' />
             <h1 className="text-4xl font-display font-bold mb-8">Event Index</h1>
             <div className="filter-container">
-                <div className="filter-sizer"></div>
                 {allEventsData.map((e, i) => (
                     <Event key={i} event={e} />
                 ))}

@@ -27,20 +27,14 @@
   margin-bottom: 12px;
 }
 
-.filter-sizer {
-  max-width: calc(100% - 18px) !important;
-}
-
 .filter-item {
   margin-bottom: 24px;
 }
 
 @media (min-width: 1024px) {
-  .filter-sizer, .indexCG {
+  .indexCG {
     width: calc(50% - 20px);
     max-width: calc(100% - 12px) !important;
-  }
-  .indexCG {
     box-shadow: 8px 8px 0 black;
   }
   .filter-item {
@@ -49,7 +43,7 @@
 }
 
 @media (min-width: 1536px) { 
-  .filter-sizer, .indexCG {
+  .indexCG {
     width: calc(100% / 3 - 20px);
   }
 }

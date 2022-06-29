@@ -48,11 +48,13 @@ export default function StoryIndex({ story }) {
                 <title>Main Story</title>
             </Head>
             
-            <DynamicFilter />
+            <DynamicFilter page='mainStory' />
             <h1 className='text-6xl font-bold font-display text-center mb-16'>Main Story</h1>
-            {story.map((c, i) => (
-                <Chapter key={i} chapter={c} />
-            ))}
+            <div className="filter-container">
+              {story.map((c, i) => (
+                  <Chapter key={i} chapter={c} />
+              ))}
+            </div>
         </Layout>
     )
 }

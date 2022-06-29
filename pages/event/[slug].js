@@ -1,5 +1,5 @@
 import prisma from '../../lib/prisma'
-import StoryPart from "../../components/StoryPart";
+import StoryPartOld from "../../components/StoryPart";
 import Layout from '../../components/layout'
 import Head from 'next/head'
 import Image from "next/image"
@@ -117,7 +117,7 @@ export default function EventPage({ event }) {
                 </div>
                 <div>
                     {event.parts.map((p, i) => (
-                        <StoryPart key={i} part={p} />
+                        <StoryPartOld key={i} part={p} />
                     ))}
                 </div>
             </section>
