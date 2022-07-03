@@ -2,9 +2,10 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { CgArrowLeft } from "react-icons/cg";
+import { FaBan } from "react-icons/fa";
 
-const name = "kisu.moe";
-export const siteTitle = "キス.moe";
+const name = "/ hlos";
+export const siteTitle = "キス.moe / hlos";
 
 export default function Layout({ children, home, event }) {
   return (
@@ -27,15 +28,19 @@ export default function Layout({ children, home, event }) {
       <header className="flex flex-col items-center">
         {home ? (
           <>
-            <Image
+            {/* <Image
               priority
               src="/images/profile.jpg"
               className="rounded-full"
               height={144}
               width={144}
               alt={name}
-            />
-            <h1 className="text-4xl font-display tracking-tighter leading-loose my-4">{name}</h1>
+            /> */}
+            <div className="relative w-32 h-32 logo transition-transform duration-500">
+              <FaBan className="text-9xl text-red-600 rotate-90 absolute top-0 left-0" />
+              <FaBan className="text-9xl text-gold-400 absolute top-0 left-0" />
+            </div>
+            <h1 className="text-4xl font-display tracking-tighter leading-loose my-4 -ml-4">{name}</h1>
           </>
         ) : (
           <>

@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Layout, { siteTitle } from '../components/Layout';
 import prisma from '../lib/prisma';
-import { CgReadme, CgAlarm, CgBolt } from 'react-icons/cg';
+import { CgReadme, CgAlarm, CgCardDiamonds, CgBolt } from 'react-icons/cg';
 
 export async function getStaticProps() {
   const cameosCounted = await prisma.hero.findMany({
@@ -32,29 +32,40 @@ export default function Home({ cameosCounted }) {
       <Head>
         <title>{siteTitle}</title>
       </Head>
-      <section className='my-10 max-w-2xl mx-auto text-2xl md:text-4xl font-display'>
-        <Link href="/hlos/story">
-          <a className='block mb-8 hover:text-red-600 text-gold-400 transition duration-500 leading-relaxed'>
-            <CgReadme className='inline-block mr-4 text-3xl md:text-6xl' />
-            <span className="text-black link-underline link-main">Main Story</span>
-          </a>
-        </Link>
-
-        <Link href="/hlos/event">
-          <a className='block mb-8 hover:text-red-600 text-gold-400 transition duration-500 leading-relaxed text-right'>
-            <span className="text-black link-underline link-main">Event Index</span>
-            <CgAlarm className='inline-block ml-4 text-3xl md:text-6xl' />
-          </a>
-        </Link>
-
+      <section className='my-10 max-w-xl mx-auto text-2xl md:text-5xl font-display flex flex-col gap-y-6 md:gap-y-12 items-center'>
         <Link href="/hlos/chara">
-          <a className='block mb-8 hover:text-red-600 text-gold-400 transition duration-500 leading-relaxed'>
+          <a className='hover:text-red-600 text-gold-400 transition duration-500 leading-relaxed md:-ml-48'>
             <CgBolt className='inline-block mr-4 text-3xl md:text-6xl ' />
             <span className="text-black link-underline link-main">Characters</span>
           </a>
         </Link>
+
+        <Link href="/hlos/story">
+          <a className='hover:text-red-600 text-gold-400 transition duration-500 leading-relaxed md:-mr-48'>
+            <span className="text-black link-underline link-main link-right">Main Story</span>
+            <CgReadme className='inline-block ml-4 text-3xl md:text-6xl' />
+          </a>
+        </Link>
+
+        
+
+        <Link href="/hlos/event">
+          <a className='hover:text-red-600 text-gold-400 transition duration-500 leading-relaxed md:-ml-48'>
+            <CgAlarm className='inline-block mr-4 text-3xl md:text-6xl' />
+            <span className="text-black link-underline link-main">Events</span>
+          </a>
+        </Link>
+
+        <Link href="/hlos/card">
+          <a className='hover:text-red-600 text-gold-400 transition duration-500 leading-relaxed md:-mr-48'>  
+            <span className="text-black link-underline link-main link-right">Cards</span>
+            <CgCardDiamonds className='inline-block ml-4 text-3xl md:text-6xl ' />
+          </a>
+        </Link>
+
+       
       </section>
-      <section className='mb-20 max-w-xl mx-auto'>
+      {/* <section className='mb-20 max-w-xl mx-auto'>
         <table className='table-auto border-collapse w-full'>
           <thead className='bg-slate-200'>
             <tr>
@@ -87,7 +98,7 @@ export default function Home({ cameosCounted }) {
             ))}
           </tbody>
         </table>
-      </section>
+      </section> */}
     </Layout>
   );
 }

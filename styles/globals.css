@@ -129,3 +129,16 @@
 
 .link-main:before { height: 3px }
 .link-main:after { height: 6px }
+
+
+.link-right:after {
+  transform-origin: bottom left;
+}
+.link-right:hover:after {
+  transform: scaleX(1);
+  transform-origin: bottom right;
+}
+
+.logo:hover {
+  transform: rotateY(180deg);
+}
