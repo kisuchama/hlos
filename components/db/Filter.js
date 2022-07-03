@@ -58,10 +58,10 @@ export default function StoryFilter({ page }) {
 
     return (
         <>
-            <button id="filterToggle" className={`fixed z-50 right-4 top-6 sm:right-12 sm:top-12 bg-black p-2 ${showFilters ? "mt-5 sm:mt-0 sm:mr-80" : ""}`} onClick={toggleFilters}>
+            <button id="filterToggle" className={`fixed z-50 right-4 top-6 sm:right-12 sm:top-12 bg-black p-2 transition-all duration-500 ${showFilters ? "mt-5 sm:mt-0 sm:mr-80" : ""}`} onClick={toggleFilters}>
                 <MdFilterList className="text-2xl sm:text-4xl text-white" />
             </button>
-            <div id="storyFilters" className={`h-screen bg-white w-full max-w-full sm:w-96 fixed z-40 top-0 -right-full sm:-right-96 overflow-x-hidden p-12 border-l-[3px] ${showFilters ? "mr-[100%] sm:mr-96" : ""}`}>
+            <div id="storyFilters" className={`h-screen bg-white w-full max-w-full sm:w-96 fixed z-40 top-0 -right-full sm:-right-96 overflow-x-hidden p-12 border-l-[3px] transition-all duration-500 ${showFilters ? "mr-[100%] sm:mr-96" : ""}`}>
                 <h1 className="text-3xl font-display uppercase">Filters</h1>
                 <h2 className="text-2xl font-display mt-8 flex flex-row items-center">Characters <CgCloseR className="ml-2 text-3xl text-slate-400 hover:text-black" onClick={() => handleFilterKeyChange('*')} /></h2>
                 <div className="filter-group max-w-full grid grid-cols-4 mt-4 gap-y-4 sm:gap-2" data-filter-group="hero">
