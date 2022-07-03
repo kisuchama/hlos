@@ -1,12 +1,17 @@
 import Link from "next/link";
 import Image from "next/image";
-import Date from "./date";
-import Cameo from "./Cameo";
+import Date from "../Date";
 import { CgArrowRight, CgCalendarToday } from 'react-icons/cg';
 import { MdTranslate } from 'react-icons/md';
 
 export default function Event({ event }) {
+    const eventTranslators = []
+    for ( var k = 0; k < event.translator.length; k++) {
+        eventTranslators.push(event.translator[0].translator.name)
+    }
+    
     const distinctCameos = []
+    const cameoClasses = []
     var c = '';
     var h = '';
     // limited to playable characters
@@ -22,28 +27,12 @@ export default function Event({ event }) {
             }
         }
     }
-    
-    // for ( var i=0; i < event.parts.length; i++) {
-    //     c = event.parts[i].cameos
-    //     for ( var j=0; j < c.length; j++) {
-    //         h = c[j].hero
-    //         if ((!distinctCameos.includes(h.name)) &&
-    //             (h.chibi)) {
-    //                 distinctCameos.push(h.name)
-    //             }
-    //     }
-    // }
-
-    // for (const e in event) {
-    //     console.log(e.parts.cameos.hero.name)
-    //     if ((!distinctCameos.includes(e.parts.cameos.hero.name)) &&
-    //         (e.parts.cameos.hero.chibi)) {
-    //         distinctCameos.push(e.parts.cameos.hero.name)
-    //     }
-    // }
+    for ( var x = 0; x < distinctCameos.length; x++ ) {
+        cameoClasses.push('tag' + distinctCameos[x])
+    }
     return (
-        <div className="indexCG flex flex-col">
-            <Link href={`/event/${event.slug}`}><a>
+        <div className={`filter-item indexCG flex flex-col bg-white ${cameoClasses.join(' ')}`}>
+            <Link href={`/hlos/event/${event.slug}`}><a>
                 <div>
                     <Image
                         src={`/images/event/${event.slug}/main.jpg`}
@@ -94,9 +83,11 @@ export default function Event({ event }) {
                             <CgArrowRight className="text-slate-400" /> 
                             <Date dateString={event.endDate} />
                         </div>
-                        <div className="flex flex-row items-center">
-                            <MdTranslate className="inline-block mx-1" /> <a href="#" className="link-underline">@translator</a>
+                        {eventTranslators.map((t, i) => (
+                            <div key={i} className="flex flex-row items-center">
+                            <MdTranslate className="inline-block mx-1" /> <a href={`https://twitter.com/${t}`} className="link-underline">@{t}</a>
                         </div>
+                        ))}
                     </div>
                 </div>
             </div>

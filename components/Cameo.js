@@ -3,8 +3,8 @@ import Image from "next/image"
 
 export default function Cameo({ cameo }) {
     return (
-        <Link href={`/chara/${cameo.hero.name.toLowerCase()}`}>
-            <a className="h-80px w-88px relative inline-block">
+        <Link href={`/hlos/chara/${cameo.hero.name.toLowerCase()}`}>
+            <a className="h-56px w-62px">
                 <Image
                     src={`/images/chibi/${cameo.hero.name.toLowerCase()}.png`}
                     alt={cameo.hero.name}

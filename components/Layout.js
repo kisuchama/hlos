@@ -8,7 +8,7 @@ export const siteTitle = "キス.moe";
 
 export default function Layout({ children, home, event }) {
   return (
-    <div className="max-w-3xl lg:max-w-5xl py-4 mx-4 md:mx-auto mt-12 mb-24">
+    <div className="container mx-auto py-4 mt-2 sm:mt-12 mb-24">
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <meta
@@ -63,7 +63,7 @@ export default function Layout({ children, home, event }) {
       {event && (
         <div className="mt-12 flex flex-row items-center justify-start">
           <CgArrowLeft className="inline-block mr-2"/>
-          <Link href="/event">
+          <Link href="/hlos/event">
             <a className="link-underline font-display">Back to event index</a>
           </Link>
         </div>

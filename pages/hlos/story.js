@@ -1,7 +1,8 @@
-import prisma from '../lib/prisma'
-import Layout from '../components/layout'
+import prisma from '../../lib/prisma'
+import Layout from '../../components/Layout'
 import Head from 'next/head'
-import Chapter from '../components/Chapters'
+import Chapter from '../../components/db/Chapters'
+import dynamic from 'next/dynamic'
 
 export async function getStaticProps() {
     const story = await prisma.mainStory.findMany({
@@ -36,16 +37,24 @@ export async function getStaticProps() {
     }
 }
 
+const DynamicFilter = dynamic(() => import('../../components/db/Filter'), {
+    ssr: false,
+})
+
 export default function StoryIndex({ story }) {
     return (
         <Layout>
             <Head>
                 <title>Main Story</title>
             </Head>
+            
+            <DynamicFilter page='mainStory' />
             <h1 className='text-6xl font-bold font-display text-center mb-16'>Main Story</h1>
-            {story.map((c, i) => (
-                <Chapter key={i} chapter={c} />
-            ))}
+            <div className="filter-container">
+              {story.map((c, i) => (
+                  <Chapter key={i} chapter={c} />
+              ))}
+            </div>
         </Layout>
     )
 }

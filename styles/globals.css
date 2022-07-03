@@ -17,13 +17,62 @@
     /* transition: box-shadow 0.3s ease-in-out; */
 }
 
+.storyPart {
+  max-width: calc(100% - 16px) !important;
+  margin-bottom: 18px; 
+  background-color: white;
+  border: 6px solid white !important;
+  outline: 3px solid black !important;
+}
+
+.partWrapper {
+  position: relative;
+  width: 100%;
+  padding-top: 62%;
+}
+
+.partContent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+/* .chapter > span {
+  border: 6px solid white !important;
+  outline: 3px solid black !important;
+} */
+
 .indexCG {
+  max-width: calc(100% - 18px) !important;
   position: relative;
   left: 3px;
   box-shadow: 12px 12px 0 black;
   border: 12px solid white;
   outline: 3px solid black;
-  margin-bottom: 12px;
+  margin-bottom: 24px;
+}
+
+@media (min-width: 768px) { .chapter, .storyPart { width: calc(50% - 16px) } }
+
+@media (min-width: 1024px) {
+  .chapter, .storyPart { width: calc(100% / 3 - 16px) }
+  .indexCG {
+    width: calc(50% - 20px);
+  }
+  .indexCG {
+    max-width: calc(100% - 12px) !important;
+    box-shadow: 8px 8px 0 black;
+    margin-bottom: 20px;
+  }
+}
+
+@media (min-width: 1536px) { 
+  .chapter, .storyPart { width: calc(25% - 16px) }
+  .indexCG {
+    width: calc(100% / 3 - 20px);
+  }
 }
 
 .indexCG > a > div > span {
@@ -34,17 +83,30 @@
   padding: 12px 3px 6px;
 }
 
-/* a .imgCG:hover {
-    transform: translate(12px, 12px);
+/* FILTERS */
+
+#filterToggle, #storyFilters {
+  transition: 0.5s ease-in-out;
 }
 
-a .imgCG:hover > span {
-  box-shadow: transparent;
+/* .partDiv {
+  transition: visibility 0s, opacity 0.5s;
+  opacity: 1;
+  visibility: visible;
+  max-height: auto;
+  overflow: hidden;
+}
+
+.partDiv.hidePart {
+  transition: visibility 0s, opacity 0.5s;
+  opacity: 0;
+  visibility: hidden;
+  max-height: 0;
 } */
 
 /* WHITE HIGHLIGHT */
 
-.highlight {
+/* .highlight {
   --lineHeight: 1.4em;
 }
 
@@ -54,7 +116,7 @@ a .imgCG:hover > span {
   background: linear-gradient(white 0 0) 0/100% var(--lineHeight) no-repeat;
   box-decoration-break: clone;
   -webkit-box-decoration-break: clone;
-}
+} */
 
 /* LINK UNDERLINE */
 

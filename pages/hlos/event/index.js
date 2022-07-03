@@ -1,7 +1,9 @@
-import prisma from '../../lib/prisma'
-import Event from '../../components/Event'
+import prisma from '../../../lib/prisma'
+import Event from '../../../components/db/Event'
 import Head from 'next/head'
-import Layout from '../../components/layout'
+import Layout from '../../../components/Layout'
+import dynamic from 'next/dynamic'
+import Script from 'next/script'
 
 export async function getStaticProps() {
     const allEventsData = await prisma.event.findMany({
@@ -42,6 +44,15 @@ export async function getStaticProps() {
             _count: {
                 select: { parts: true },
             },
+            translator: {
+                select: {
+                    translator: {
+                        select: {
+                            name: true,
+                        },
+                    },
+                },
+            },
         },
     })
 
@@ -55,14 +66,22 @@ export async function getStaticProps() {
     }
 }
 
+const DynamicFilter = dynamic(() => import('../../../components/db/Filter'), {
+    ssr: false,
+})
+
 export default function EventIndex({ allEventsData }) {
     return (
         <Layout>
             <Head>
                 <title>Event Index</title>
             </Head>
-            <h1 className="text-4xl leading-relaxed font-display font-bold mb-8">Event Index</h1>
-            <div className="grid lg:grid-cols-2 gap-8">
+
+            <Script src="../../public/isotope-fit-columns.js" />
+
+            <DynamicFilter page='eventIndex' />
+            <h1 className="text-4xl font-display font-bold mb-8">Event Index</h1>
+            <div className="filter-container">
                 {allEventsData.map((e, i) => (
                     <Event key={i} event={e} />
                 ))}

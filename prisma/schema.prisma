@@ -11,73 +11,84 @@ datasource db {
 
 model Appellation {
   appellation String
-  hero        Hero    @relation("Namee", fields: [heroId], references: [id])
+  hero        Hero   @relation("Namee", fields: [heroId], references: [id])
   heroId      Int
-  caller      Hero    @relation("Caller", fields: [callerId], references: [id])
+  caller      Hero   @relation("Caller", fields: [callerId], references: [id])
   callerId    Int
 
   @@id([heroId, callerId])
 }
 
 model Card {
-  id          Int         @id @default(autoincrement())
+  id          Int           @id @default(autoincrement())
   title       String?
   titleJp     String?
-  hero        Hero        @relation(fields:[heroId], references:[id])
+  hero        Hero          @relation(fields: [heroId], references: [id])
   heroId      Int
-  event       Event       @relation(fields: [eventId], references: [id])
+  rarity      Int
+  event       Event         @relation(fields: [eventId], references: [id])
   eventId     Int
-  translation String?
+  translation Translation[]
   cameos      CardCameo[]
 
   @@index([heroId, eventId])
 }
 
 model CardCameo {
-  hero    Hero  @relation(fields: [heroId], references: [id])
-  heroId  Int
-  card    Card  @relation(fields: [cardId], references: [id])
-  cardId  Int
+  hero   Hero @relation(fields: [heroId], references: [id])
+  heroId Int
+  card   Card @relation(fields: [cardId], references: [id])
+  cardId Int
 
   @@id([heroId, cardId])
 }
 
 model Event {
-  id        Int         @id @default(autoincrement())
-  name      String
-  nameJp    String?
-  desc      String?     @db.Text
-  startDate DateTime    @db.Date
-  endDate   DateTime    @db.Date
-  sector    Sector?     @relation(fields: [sectorId], references: [id])
-  sectorId  Int?
-  hero      Hero?       @relation(fields: [heroId], references: [id])
-  heroId    Int?
-  slug      String      @unique
-  parts     EventPart[]
-  cards     Card[]
+  id          Int               @id @default(autoincrement())
+  name        String
+  nameJp      String?
+  desc        String?           @db.Text
+  startDate   DateTime          @db.Date
+  endDate     DateTime          @db.Date
+  sector      Sector?           @relation(fields: [sectorId], references: [id])
+  sectorId    Int?
+  hero        Hero?             @relation(fields: [heroId], references: [id])
+  heroId      Int?
+  slug        String            @unique
+  translator  EventTranslator[]
+  parts       EventPart[]
+  cards       Card[]
 
   @@index([sectorId, heroId])
 }
 
 model EventCameo {
-  hero    Hero      @relation(fields: [heroId], references: [id])
-  heroId  Int
-  part    EventPart @relation(fields: [partId], references: [id])
-  partId  Int
+  hero   Hero      @relation(fields: [heroId], references: [id])
+  heroId Int
+  part   EventPart @relation(fields: [partId], references: [id])
+  partId Int
 
   @@id([heroId, partId])
 }
 
 model EventPart {
-  id          Int          @id @default(autoincrement())
-  event       Event        @relation(fields: [eventId], references: [id])
+  id          Int           @id @default(autoincrement())
+  event       Event         @relation(fields: [eventId], references: [id])
   eventId     Int
   part        Int
-  translation String?
   cameos      EventCameo[]
+  translation Translation[]
 
   @@index([eventId])
+}
+
+model EventTranslator {
+  event         Event       @relation(fields: [eventId], references: [id])
+  eventId       Int
+  translator    Translator  @relation(fields: [translatorId], references: [id])
+  translatorId  Int
+
+  @@id([eventId, translatorId])
 }
 
 model Hero {
@@ -114,8 +125,8 @@ model MainCameo {
 }
 
 model MainPart {
-  id          Int        @id @default(autoincrement())
-  chapter     MainStory  @relation(fields: [chapterId], references: [id])
+  id          Int         @id @default(autoincrement())
+  chapter     MainStory   @relation(fields: [chapterId], references: [id])
   chapterId   Int
   part        Int
   translation String?
@@ -125,7 +136,7 @@ model MainPart {
 }
 
 model MainStory {
-  id      Int         @id @default(autoincrement())
+  id      Int        @id @default(autoincrement())
   name    String
   season  Int
   chapter Int
@@ -139,4 +150,24 @@ model Sector {
   hex      String? @db.Char(7)
   heroes   Hero[]
   events   Event[]
+}
+
+model Translation {
+  id           Int        @id @default(autoincrement())
+  link         String
+  translator   Translator @relation(fields: [translatorId], references: [id])
+  translatorId Int
+  eventPart    EventPart? @relation(fields: [eventPartId], references: [id])
+  eventPartId  Int?
+  card         Card?      @relation(fields: [cardId], references: [id])
+  cardId       Int?
+}
+
+model Translator {
+  id           Int                @id @default(autoincrement())
+  name         String
+  url          String?
+  twitter      String?
+  translations Translation[]
+  events       EventTranslator[]
 }

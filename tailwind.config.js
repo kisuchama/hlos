@@ -7,6 +7,15 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    container: {
+      padding: {
+        DEFAULT: '1rem',
+        sm: '2rem',
+        lg: '4rem',
+        xl: '5rem',
+        '2xl': '6rem',
+      },
+    },
     colors: {
       transparent: 'transparent',
       current: 'currentColor',
@@ -58,11 +67,18 @@ module.exports = {
   },
   plugins: [],
   safelist: [
-    'text-3xl',
+    {
+      pattern: /text-(3xl|6xl)/
+    },
+    'mb-16',
     'text-slate-400',
     'list-disc',
     'list-inside',
     'font-display',
+    '2xl:grid-cols-3',
+    'gap-8',
+    '2xl:gap-4',
+    'lg:top-8',
     {
       pattern: /mb-(8|12)/
     },
@@ -72,7 +88,7 @@ module.exports = {
     },
     {
       pattern: /(bg|text|border)-(south|akira|will|brad|oscar|north|ren|gast|victor|marion|west|junior|faith|keith|dino|east|gray|billy|asch|jay|nova|lily|jack02|jacqueline|siams|shin|sirius)/,
-      variants: ['before', 'hover'],
+      variants: ['before', 'hover', 'active', 'focus'],
     },
   ],
 }

@@ -1,9 +1,9 @@
-import prisma from '../../lib/prisma'
-import StoryPart from "../../components/StoryPart";
-import Layout from '../../components/layout'
+import prisma from '../../../lib/prisma'
+import StoryPartOld from "../../../components/db/StoryPart";
+import Layout from '../../../components/Layout'
 import Head from 'next/head'
 import Image from "next/image"
-import Date from '../../components/date';
+import Date from '../../../components/Date';
 import { CgArrowRight, CgCalendarToday } from 'react-icons/cg'
 
 export async function getStaticProps({ params }) {
@@ -43,6 +43,15 @@ export async function getStaticProps({ params }) {
                     },
                 },
             },
+            translator: {
+                select: {
+                    translator: {
+                        select: {
+                            name: true,
+                        },
+                    },
+                },
+            },
             cards: true,
         },
     })
@@ -70,6 +79,7 @@ export async function getStaticPaths() {
 }
 
 export default function EventPage({ event }) {
+    // const translator = event.translator[0].translator.name
     return (
         <Layout event>
             <Head>
@@ -81,7 +91,7 @@ export default function EventPage({ event }) {
             </section>
             <section className="grid lg:grid-cols-2 gap-8">
                 <div>
-                    <div className="lg:sticky lg:top-4">
+                    <div className="lg:sticky lg:top-8">
                         <div className="imgCG">
                             <Image
                                 src={`/images/event/${event.slug}/main.jpg`}
@@ -107,7 +117,7 @@ export default function EventPage({ event }) {
                 </div>
                 <div>
                     {event.parts.map((p, i) => (
-                        <StoryPart key={i} part={p} />
+                        <StoryPartOld key={i} part={p} />
                     ))}
                 </div>
             </section>
