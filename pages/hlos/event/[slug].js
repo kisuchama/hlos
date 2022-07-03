@@ -1,9 +1,9 @@
-import prisma from '../../lib/prisma'
-import StoryPartOld from "../../components/StoryPart";
-import Layout from '../../components/layout'
+import prisma from '../../../lib/prisma'
+import StoryPartOld from "../../../components/db/StoryPart";
+import Layout from '../../../components/Layout'
 import Head from 'next/head'
 import Image from "next/image"
-import Date from '../../components/date';
+import Date from '../../../components/Date';
 import { CgArrowRight, CgCalendarToday } from 'react-icons/cg'
 
 export async function getStaticProps({ params }) {

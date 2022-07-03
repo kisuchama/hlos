@@ -63,7 +63,7 @@ export default function Layout({ children, home, event }) {
       {event && (
         <div className="mt-12 flex flex-row items-center justify-start">
           <CgArrowLeft className="inline-block mr-2"/>
-          <Link href="/event">
+          <Link href="/hlos/event">
             <a className="link-underline font-display">Back to event index</a>
           </Link>
         </div>

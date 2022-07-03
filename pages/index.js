@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
-import Layout, { siteTitle } from '../components/layout';
+import Layout, { siteTitle } from '../components/Layout';
 import prisma from '../lib/prisma';
 import { CgReadme, CgAlarm } from 'react-icons/cg';
 
@@ -41,11 +41,11 @@ export default function Home({ cameosCounted }) {
         <ul className='my-4 leading-loose text-xl font-display'>
           <li>
             <CgReadme className="inline-block mr-2"/>
-            <Link href="/story"><a className='link-underline leading-normal'>Main Story</a></Link>
+            <Link href="/hlos/story"><a className='link-underline leading-normal'>Main Story</a></Link>
           </li>
           <li>
             <CgAlarm className="inline-block mr-2"/>
-            <Link href="/event"><a className='link-underline leading-normal'>Event Index</a></Link>
+            <Link href="/hlos/event"><a className='link-underline leading-normal'>Event Index</a></Link>
           </li>
         </ul>
       </section>

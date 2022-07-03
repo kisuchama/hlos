@@ -67,7 +67,10 @@ module.exports = {
   },
   plugins: [],
   safelist: [
-    'text-3xl',
+    {
+      pattern: /text-(3xl|6xl)/
+    },
+    'mb-16',
     'text-slate-400',
     'list-disc',
     'list-inside',

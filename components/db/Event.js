@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import Date from "./date";
-import Cameo from "./Cameo";
+import Date from "../Date";
 import { CgArrowRight, CgCalendarToday } from 'react-icons/cg';
 import { MdTranslate } from 'react-icons/md';
 
@@ -33,7 +32,7 @@ export default function Event({ event }) {
     }
     return (
         <div className={`filter-item indexCG flex flex-col bg-white ${cameoClasses.join(' ')}`}>
-            <Link href={`/event/${event.slug}`}><a>
+            <Link href={`/hlos/event/${event.slug}`}><a>
                 <div>
                     <Image
                         src={`/images/event/${event.slug}/main.jpg`}

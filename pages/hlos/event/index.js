@@ -1,7 +1,7 @@
-import prisma from '../../lib/prisma'
-import Event from '../../components/Event'
+import prisma from '../../../lib/prisma'
+import Event from '../../../components/db/Event'
 import Head from 'next/head'
-import Layout from '../../components/layout'
+import Layout from '../../../components/Layout'
 import dynamic from 'next/dynamic'
 import Script from 'next/script'
 
@@ -66,7 +66,7 @@ export async function getStaticProps() {
     }
 }
 
-const DynamicFilter = dynamic(() => import('../../components/Filter'), {
+const DynamicFilter = dynamic(() => import('../../../components/db/Filter'), {
     ssr: false,
 })
 
