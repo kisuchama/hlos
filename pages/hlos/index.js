@@ -1,8 +1,8 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
-import Layout, { siteTitle } from '../components/Layout';
-import prisma from '../lib/prisma';
+import Layout, { siteTitle } from '../../components/Layout';
+import prisma from '../../lib/prisma';
 import { CgReadme, CgAlarm, CgCardDiamonds, CgBolt } from 'react-icons/cg';
 
 export async function getStaticProps() {
@@ -30,7 +30,7 @@ export default function Home({ cameosCounted }) {
   return (
     <Layout home>
       <Head>
-        <title>{siteTitle}</title>
+        <title>{`キス.moe ${siteTitle}`}</title>
       </Head>
       <section className='my-10 max-w-xl mx-auto text-2xl md:text-5xl font-display flex flex-col gap-y-6 md:gap-y-12 items-center'>
         <Link href="/hlos/chara">

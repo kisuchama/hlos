@@ -1,5 +1,5 @@
 import prisma from '../../lib/prisma'
-import Layout from '../../components/Layout'
+import Layout, { siteTitle } from '../../components/Layout'
 import Head from 'next/head'
 import Chapter from '../../components/db/Chapters'
 import dynamic from 'next/dynamic'
@@ -45,7 +45,7 @@ export default function StoryIndex({ story }) {
     return (
         <Layout>
             <Head>
-                <title>Main Story</title>
+                <title>{siteTitle} / main story</title>
             </Head>
             
             <DynamicFilter page='mainStory' />

@@ -1,6 +1,6 @@
 import prisma from '../../../lib/prisma'
 import StoryPartOld from "../../../components/db/StoryPart";
-import Layout from '../../../components/Layout'
+import Layout, { siteTitle } from '../../../components/Layout'
 import Head from 'next/head'
 import Image from "next/image"
 import Date from '../../../components/Date';
@@ -83,7 +83,7 @@ export default function EventPage({ event }) {
     return (
         <Layout event>
             <Head>
-                <title>{event.name}</title>
+                <title>{siteTitle} / {event.name.toLowerCase()}</title>
             </Head>
             <section className="text-center mb-12">
                 <h1 className="text-4xl leading-relaxed font-display font-bold">{event.name}</h1>

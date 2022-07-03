@@ -4,8 +4,7 @@ import Link from "next/link";
 import { CgArrowLeft } from "react-icons/cg";
 import { FaBan } from "react-icons/fa";
 
-const name = "/ hlos";
-export const siteTitle = "キス.moe / hlos";
+export const siteTitle = "/ hlos";
 
 export default function Layout({ children, home, event }) {
   return (
@@ -22,7 +21,7 @@ export default function Layout({ children, home, event }) {
             siteTitle
           )}.png?theme=light&md=0&fontSize=75px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fnextjs-black-logo.svg`}
         />
-        <meta name="og:title" content={siteTitle} />
+        <meta name="og:title" content={`キス.moe ${siteTitle}`} />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <header className="flex flex-col items-center">
@@ -40,7 +39,7 @@ export default function Layout({ children, home, event }) {
               <FaBan className="text-9xl text-red-600 rotate-90 absolute top-0 left-0" />
               <FaBan className="text-9xl text-gold-400 absolute top-0 left-0" />
             </div>
-            <h1 className="text-4xl font-display tracking-tighter leading-loose my-4 -ml-4">{name}</h1>
+            <h1 className="text-4xl font-display tracking-tighter leading-loose my-4 -ml-4">{siteTitle}</h1>
           </>
         ) : (
           <>
@@ -76,7 +75,7 @@ export default function Layout({ children, home, event }) {
       {!home && !event && (
         <div className="mt-12 flex flex-row items-center justify-start">
           <CgArrowLeft className="inline-block mr-2"/>
-          <Link href="/">
+          <Link href="/hlos">
             <a className="link-underline font-display">Back to home</a>
           </Link>
         </div>
