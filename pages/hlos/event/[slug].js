@@ -79,11 +79,12 @@ export async function getStaticPaths() {
 }
 
 export default function EventPage({ event }) {
-    // const translator = event.translator[0].translator.name
+  const regex = /[^a-z0-9 ]/g;
+  const eventName = event.name.toLowerCase().replace(regex, "")
     return (
         <Layout event>
             <Head>
-                <title>{siteTitle} / {event.name.toLowerCase()}</title>
+                <title>{siteTitle} / {eventName}</title>
             </Head>
             <section className="text-center mb-12">
                 <h1 className="text-4xl leading-relaxed font-display font-bold">{event.name}</h1>
