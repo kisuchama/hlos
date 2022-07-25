@@ -1,5 +1,5 @@
 import prisma from '../../../lib/prisma'
-import StoryPartOld from "../../../components/db/StoryPart";
+import StoryPart from "../../../components/db/StoryPart";
 import Layout, { siteTitle } from '../../../components/Layout'
 import Head from 'next/head'
 import Image from "next/image"
@@ -106,9 +106,9 @@ export default function EventPage({ event }) {
                         <div className="my-4">
                             <div className="flex flex-row items-center justify-start">
                                 <CgCalendarToday className="text-slate-400" /> 
-                                <Date dateString={event.startDate} /> 
+                                <Date dateString={event.startDate} long={true} /> 
                                 <CgArrowRight className="text-slate-400" /> 
-                                <Date dateString={event.endDate} />
+                                <Date dateString={event.endDate} long={true} />
                             </div>
                             {event.desc ? (
                                 <p className="py-4">{event.desc}</p>
@@ -118,7 +118,7 @@ export default function EventPage({ event }) {
                 </div>
                 <div>
                     {event.parts.map((p, i) => (
-                        <StoryPartOld key={i} part={p} />
+                        <StoryPart key={i} part={p} event={true} />
                     ))}
                 </div>
             </section>

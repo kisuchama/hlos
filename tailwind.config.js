@@ -68,7 +68,8 @@ module.exports = {
   plugins: [],
   safelist: [
     {
-      pattern: /text-(3xl|6xl)/
+      pattern: /text-(xl|2xl|3xl|4xl|5xl|6xl)/,
+      variants: ['sm', 'md', 'lg', 'xl'],
     },
     'mb-16',
     'text-slate-400',
@@ -79,6 +80,7 @@ module.exports = {
     'gap-8',
     '2xl:gap-4',
     'lg:top-8',
+    'md:gap-y-8',
     {
       pattern: /mb-(8|12)/
     },

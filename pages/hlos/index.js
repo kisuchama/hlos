@@ -32,7 +32,7 @@ export default function Home({ cameosCounted }) {
       <Head>
         <title>{`キス.moe ${siteTitle}`}</title>
       </Head>
-      <section className='my-10 max-w-xl mx-auto text-2xl md:text-5xl font-display flex flex-col gap-y-6 md:gap-y-12 items-center'>
+      <section className='my-10 max-w-xl mx-auto text-2xl md:text-5xl font-display flex flex-col gap-y-6 md:gap-y-8 items-center'>
         <Link href="/hlos/chara">
           <a className='hover:text-red-600 text-gold-400 transition duration-500 leading-relaxed md:-ml-48'>
             <CgBolt className='inline-block mr-4 text-3xl md:text-6xl ' />
@@ -46,8 +46,6 @@ export default function Home({ cameosCounted }) {
             <CgReadme className='inline-block ml-4 text-3xl md:text-6xl' />
           </a>
         </Link>
-
-        
 
         <Link href="/hlos/event">
           <a className='hover:text-red-600 text-gold-400 transition duration-500 leading-relaxed md:-ml-48'>
@@ -65,7 +63,7 @@ export default function Home({ cameosCounted }) {
 
        
       </section>
-      {/* <section className='mb-20 max-w-xl mx-auto'>
+      <section className='mb-20 max-w-xl mx-auto'>
         <table className='table-auto border-collapse w-full'>
           <thead className='bg-slate-200'>
             <tr>
@@ -98,7 +96,7 @@ export default function Home({ cameosCounted }) {
             ))}
           </tbody>
         </table>
-      </section> */}
+      </section>
     </Layout>
   );
 }
