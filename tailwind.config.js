@@ -53,7 +53,7 @@ module.exports = {
       sirius: '#830707',
     },
     fontFamily: {
-      'display': ['"Krona One"']
+      'display': ['"Krona One"', '"Mochiy Pop One"']
     },
     extend: {
       fontFamily: {

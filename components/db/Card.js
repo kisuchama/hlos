@@ -58,7 +58,7 @@ export default function Card({ card, eventPage }) {
       </div>
       <hr className={`border-0 mt-1 mb-2 h-[3px] bg-${card.hero.name.toLowerCase()}`} />
       <div className="indexCaption flex flex-col space-y-6 justify-between h-full">
-          <h2 className="text-2xl lg:text-xl font-display">{card.title}</h2>
+          <h2 className="text-2xl lg:text-xl font-display">{card.title ? card.title : card.titleJp}</h2>
           
           <div className="flex flex-row mx-2 h-12 items-center justify-center">
               {distinctCameos.map((h, i) => (

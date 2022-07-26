@@ -65,6 +65,7 @@ export async function getStaticProps({ params }) {
       cards: {
         select: {
           title: true,
+          titleJp: true,
           rarity: true,
           hero: { select: { name: true, surname: true } },
           event: {
