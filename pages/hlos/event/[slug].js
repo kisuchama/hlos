@@ -119,6 +119,7 @@ export default function EventPage({ event }) {
   const regex = /[^a-z0-9 ]/g;
   const eventName = event.name.toLowerCase().replace(regex, "");
   let totalCards = event.cards.length;
+  if (totalCards > 4) { totalCards = 4 };
   const eventTranslators = []
   for ( var k = 0; k < event.translator.length; k++) {
       eventTranslators.push(event.translator[k].translator.name)
@@ -173,10 +174,23 @@ export default function EventPage({ event }) {
             <Date dateString={event.endDate} long={true} />
           </div>
           <div className="flex flex-row items-center justify-start mt-4">
-            <a className="uppercase text-xs bg-black border-[1px] border-black text-white px-3 py-1">Sector</a>
-            <a className="uppercase text-xs bg-north border-[1px] border-black text-white px-3 py-1 mr-2">North</a>
+            {/* EVENT TYPE */}
+            {event.sector ? (
+              <>
+                <a className="uppercase text-xs bg-black border-[1px] border-black text-white px-3 py-1">Sector</a>
+                <a className={`uppercase text-xs bg-${event.sector.location.toLowerCase()} border-[1px] border-black text-white px-3 py-1 mr-2`}>{event.sector.location}</a>
+              </>
+            ) : (<></>)}
+            {event.hero ? (
+              <>
+                <a className="uppercase text-xs bg-black border-[1px] border-black text-white px-3 py-1">Hero</a>
+                <a className={`uppercase text-xs bg-${event.hero.name.toLowerCase()} border-[1px] border-black text-white px-3 py-1 mr-2`}>{event.hero.name}</a>
+              </>
+            ) : (<></>)}
 
-            <a className="uppercase text-xs bg-east border-[1px] border-east text-white px-3 py-1">Tech</a>
+            {event.attribute ? (
+              <a className={`uppercase text-xs bg-${event.attribute.color} border-[1px] border-${event.attribute.color} text-white px-3 py-1`}>{event.attribute.name}</a>
+            ) : (<></>)}
           </div>
         </div>
         <div className={`lg:col-span-9`}>
