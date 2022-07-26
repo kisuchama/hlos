@@ -17,9 +17,16 @@ export async function getStaticProps({ params }) {
       name: true,
       nameJp: true,
       slug: true,
+      noCover: true,
       desc: true,
       startDate: true,
       endDate: true,
+      attribute: {
+        select: {
+          name: true,
+          color: true,
+        }
+      },
       sector: {
         select: {
           location: true,
@@ -116,6 +123,17 @@ export default function EventPage({ event }) {
   for ( var k = 0; k < event.translator.length; k++) {
       eventTranslators.push(event.translator[k].translator.name)
   }
+  // determine cover img src
+  const coverImg = [];
+  let featured = '';
+  if (event.hero) {
+    featured = event.hero.name.toLowerCase();
+  }
+  if (event.noCover) {
+    coverImg.push(`/images/event/${event.slug}/${featured}-evo.jpg`)
+  } else {
+    coverImg.push(`/images/event/${event.slug}/main.jpg`)
+  }
   return (
     <Layout event>
       <Head>
@@ -164,7 +182,7 @@ export default function EventPage({ event }) {
         <div className={`lg:col-span-9`}>
           <div className="imgCG">
             <Image
-              src={`/images/event/${event.slug}/main.jpg`}
+              src={coverImg[0]}
               alt={event.name}
               width={1024}
               height={630}

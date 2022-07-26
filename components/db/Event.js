@@ -30,12 +30,24 @@ export default function Event({ event }) {
     for ( var x = 0; x < distinctCameos.length; x++ ) {
         cameoClasses.push('tag' + distinctCameos[x])
     }
+    // determine cover img src
+    const coverImg = [];
+    let featured = '';
+    if (event.hero) {
+      featured = event.hero.name.toLowerCase();
+    }
+    if (event.noCover) {
+      coverImg.push(`/images/event/${event.slug}/${featured}-evo.jpg`)
+    } else {
+      coverImg.push(`/images/event/${event.slug}/main.jpg`)
+    }
+    
     return (
         <div className={`filter-item indexCG flex flex-col bg-white ${cameoClasses.join(' ')}`}>
             <Link href={`/hlos/event/${event.slug}`}><a>
                 <div>
                     <Image
-                        src={`/images/event/${event.slug}/main.jpg`}
+                        src={coverImg[0]}
                         alt={event.name}
                         width={1024}
                         height={630}

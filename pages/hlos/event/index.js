@@ -12,8 +12,8 @@ export async function getStaticProps() {
         },
         select: {
             name: true,
-            nameJp: true,
             slug: true,
+            noCover: true,
             startDate: true,
             endDate: true,
             sector: {
