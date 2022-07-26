@@ -13,9 +13,9 @@ export default function EventPart({part}) {
 
   return (
     <a href={part.translation[0] ? part.translation[0].link : undefined}>
-      <div className={`flex flex-row justify-start w-full items-center space-x-4 font-display text-2xl lg:text-4xl h-12 lg:h-16 py-2 hover:bg-slate-100 ${partCameos.join(' ')}`}>
+      <div className={`flex flex-row justify-start w-full items-center space-x-4 font-display text-2xl lg:text-4xl h-8 lg:h-16 py-2 hover:bg-slate-100 ${partCameos.join(' ')}`}>
         {/* <span className="text-5xl w-8">+</span> */}
-        <span className="font-bold w-12 lg:w-16">{pt}</span>
+        <span className="font-bold w-8 lg:w-16">{pt}</span>
         <div className="hidden lg:flex flex-row items-center mt-2 grow">
           {part.cameos.map((c, i) => (
             <div key={i}>

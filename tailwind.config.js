@@ -86,21 +86,24 @@ module.exports = {
     'lg:top-8',
     'md:gap-y-8',
     'gap-2',
-    'hidden',
-    'lg:hidden',
-    'lg:block',
     'ml-8',
     'pr-4',
     'py-1',
     'px-3',
+    '-mt-2',
+    '2xl:mt-4',
     'border-[1px]',
     'border-black',
     {
       pattern: /(grid-cols|col-span)-(3|4|6|9|12)/,
-      variants: ['lg'],
+      variants: ['lg', 'xl'],
     },
     {
       pattern: /mb-(8|12)/
+    },
+    {
+      pattern: /(hidden|block)/,
+      variants: ['lg', 'xl', '2xl'],
     },
     {
       pattern: /divide-(y|solid|slate-300)/

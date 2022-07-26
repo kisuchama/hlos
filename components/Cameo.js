@@ -21,7 +21,7 @@ export function DotCameo({ cameo }) {
   return (
     <Link href={`/hlos/chara/${cameo.hero.name.toLowerCase()}`}>
       <a>
-        <MdCircle className={`text-${cameo.hero.name.toLowerCase()}`} />
+        <MdCircle className={`text-xl text-${cameo.hero.name.toLowerCase()}`} />
       </a>
     </Link>
   );

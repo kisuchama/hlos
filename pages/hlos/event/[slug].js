@@ -1,5 +1,6 @@
 import prisma from "../../../lib/prisma";
 import EventPart from "../../../components/db/EventPart";
+import EventTags from "../../../components/db/EventTags";
 import Card from "../../../components/db/Card";
 import Layout, { siteTitle } from "../../../components/Layout";
 import Head from "next/head";
@@ -144,23 +145,24 @@ export default function EventPage({ event }) {
           {siteTitle} / {eventName}
         </title>
       </Head>
-      <section className="text-center lg:hidden mb-8">
+      <section className="text-center 2xl:hidden mb-8">
         <h1 className="text-3xl leading font-display font-bold">
           {event.name}
         </h1>
         {event.nameJp ? (
-          <h2 className="text-lg text-slate-400 leading-loose">
+          <h2 className="text-lg text-slate-400 leading-loose xl:hidden">
             {event.nameJp}
           </h2>
         ) : (
           <></>
         )}
+        <EventTags event={event} header={true} />
       </section>
       <section className={`grid lg:grid-cols-12 gap-2 lg:gap-y-8`}>
-        <div className="hidden lg:col-span-3 lg:block pr-4">
-          <h1 className="text-4xl font-display font-bold">{event.name}</h1>
+        <div className="hidden xl:col-span-3 xl:block pr-4">
+          <h1 className="text-3xl font-display font-bold hidden 2xl:block">{event.name}</h1>
           {event.nameJp ? (
-            <h2 className="text-lg text-slate-400 leading-loose mt-4">
+            <h2 className="text-lg text-slate-400 leading-loose -mt-2 2xl:mt-4">
               {event.nameJp}
             </h2>
           ) : (
@@ -173,49 +175,9 @@ export default function EventPage({ event }) {
             <CgArrowRight className="text-slate-400" />
             <Date dateString={event.endDate} long={true} />
           </div>
-          <div className="flex flex-row items-center justify-start mt-4">
-            {/* EVENT TYPE */}
-            {event.sector ? (
-              <>
-                <a className="uppercase text-xs bg-black border-[1px] border-black text-white px-3 py-1">
-                  Sector
-                </a>
-                <a
-                  className={`uppercase text-xs bg-${event.sector.location.toLowerCase()} border-[1px] border-black text-white px-3 py-1 mr-2`}
-                >
-                  {event.sector.location}
-                </a>
-              </>
-            ) : (
-              <></>
-            )}
-            {event.hero ? (
-              <>
-                <a className="uppercase text-xs bg-black border-[1px] border-black text-white px-3 py-1">
-                  Hero
-                </a>
-                <a
-                  className={`uppercase text-xs bg-${event.hero.name.toLowerCase()} border-[1px] border-black text-white px-3 py-1 mr-2`}
-                >
-                  {event.hero.name}
-                </a>
-              </>
-            ) : (
-              <></>
-            )}
-
-            {event.attribute ? (
-              <a
-                className={`uppercase text-xs bg-${event.attribute.color} border-[1px] border-${event.attribute.color} text-white px-3 py-1`}
-              >
-                {event.attribute.name}
-              </a>
-            ) : (
-              <></>
-            )}
-          </div>
+          <EventTags event={event} />
         </div>
-        <div className={`lg:col-span-9`}>
+        <div className={`lg:col-span-12 xl:col-span-9`}>
           <div className="imgCG">
             <Image
               src={coverImg[0]}
@@ -227,8 +189,8 @@ export default function EventPage({ event }) {
               priority
             />
           </div>
-          <div className="mt-8 lg:hidden">
-            <div className="flex flex-row items-center justify-start">
+          <div className="mt-8 xl:hidden">
+            <div className="flex flex-row items-center justify-between-grow">
               <CgCalendarToday className="text-slate-400" />
               <Date dateString={event.startDate} long={true} />
               <CgArrowRight className="text-slate-400" />
