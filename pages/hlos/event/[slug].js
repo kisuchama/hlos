@@ -254,7 +254,7 @@ export default function EventPage({ event }) {
           </h2>
           <hr className="border-0 ml-8 h-[3px] bg-slate-300 grow hidden lg:block" />
         </div>
-        <div className="lg:col-span-12 divide-y divide-slate-300 divide-solid gap-4">
+        <div className="lg:col-span-12 grid grid-cols-1 divide-y divide-slate-300 divide-solid gap-4">
           {event.parts.map((p, i) => (
             <EventPart key={i} part={p} />
           ))}
