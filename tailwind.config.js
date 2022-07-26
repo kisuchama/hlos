@@ -103,6 +103,9 @@ module.exports = {
       pattern: /mb-(8|12)/
     },
     {
+      pattern: /divide-(y|solid|slate-300)/
+    },
+    {
       pattern: /z-(0|10|20)/,
       variants: 'before',
     },
