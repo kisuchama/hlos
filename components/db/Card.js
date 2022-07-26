@@ -35,14 +35,14 @@ export default function Card({ card, eventPage }) {
 
   return (
     <div className={`cardCG w-full flex flex-col bg-white ${cameoClasses.join(' ')}`}>
-      <div class="relative">
+      <div className="relative">
         <div className="z-10 absolute top-2 pr-4 bg-gradient-to-r from-white via-white">
           {rarity}
         </div>
         <div className="z-10 absolute bottom-4 right-2">
           <MdChangeCircle className={`text-${card.hero.name.toLowerCase()} bg-white rounded-full rotate-90 hover:rotate-0 transition-transform duration-300 text-3xl`} />
         </div>
-        <a href={`${card.translation[0].link}`}><Image
+        <a href={`${card.translation[0] ? (card.translation[0].link) : ('')}`}><Image
           src={`/images/event/${card.event.slug}/${card.hero.name.toLowerCase()}-evo.jpg`}
           alt={`${card.hero.name} ${card.hero.surname} ${card.rarity}★ ${card.event.name}`}
           width={1024}

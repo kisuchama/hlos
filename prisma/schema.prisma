@@ -19,6 +19,13 @@ model Appellation {
   @@id([heroId, callerId])
 }
 
+model Attribute {
+  id      Int     @id @default(autoincrement())
+  name    String
+  color   String
+  events  Event[]
+}
+
 model Card {
   id          Int           @id @default(autoincrement())
   title       String?
@@ -50,11 +57,14 @@ model Event {
   desc        String?           @db.Text
   startDate   DateTime          @db.Date
   endDate     DateTime          @db.Date
+  attribute   Attribute?        @relation(fields:[attributeId], references: [id])
+  attributeId Int?  
   sector      Sector?           @relation(fields: [sectorId], references: [id])
   sectorId    Int?
   hero        Hero?             @relation(fields: [heroId], references: [id])
   heroId      Int?
   slug        String            @unique
+  noCover     Boolean?
   translator  EventTranslator[]
   parts       EventPart[]
   cards       Card[]

@@ -188,8 +188,8 @@ export default function EventPage({ event }) {
           <hr className="border-0 ml-8 h-[3px] bg-slate-300 grow hidden lg:block" />
         </div>
         {event.cards.map((c, i) => (
-          <div className={`lg:col-span-${12 / totalCards}`}>
-            <Card key={i} card={c} eventPage={true} />
+          <div key={i} className={`lg:col-span-${12 / totalCards}`}>
+            <Card card={c} eventPage={true} />
           </div>
         ))}
         <div className="lg:col-span-12 flex flex-row items-center">
