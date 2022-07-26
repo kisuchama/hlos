@@ -7,7 +7,7 @@ import { MdTranslate } from 'react-icons/md';
 export default function Event({ event }) {
     const eventTranslators = []
     for ( var k = 0; k < event.translator.length; k++) {
-        eventTranslators.push(event.translator[0].translator.name)
+        eventTranslators.push(event.translator[k].translator.name)
     }
     
     const distinctCameos = []

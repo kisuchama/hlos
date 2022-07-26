@@ -4,12 +4,15 @@
 
 .imgCG {
     position: relative;
+    width: 100%;
     left: 3px;
+    display: block;
     /* transition: transform 0.3s ease-in-out; */
 }
 
 .imgCG > span {
     max-width: calc(100% - 18px) !important;
+    width: 100%;
     box-shadow: 12px 12px 0 black !important;
     border: 12px solid white !important;
     outline: 3px solid black !important;
@@ -19,6 +22,7 @@
 
 .storyPart {
   max-width: calc(100% - 16px) !important;
+  width: 100%;
   margin-bottom: 18px; 
   background-color: white;
   border: 6px solid white !important;
@@ -44,7 +48,7 @@
   outline: 3px solid black !important;
 } */
 
-.indexCG {
+.indexCG, .cardCG {
   max-width: calc(100% - 18px) !important;
   position: relative;
   left: 3px;
@@ -61,7 +65,7 @@
   .indexCG {
     width: calc(50% - 20px);
   }
-  .indexCG {
+  .indexCG, .cardCG {
     max-width: calc(100% - 12px) !important;
     box-shadow: 8px 8px 0 black;
     margin-bottom: 20px;
