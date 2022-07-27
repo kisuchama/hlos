@@ -48,7 +48,7 @@ export default function Card({ card, eventPage }) {
         <button className="z-10 absolute bottom-4 right-2" onClick={toggleEvo}>
           <MdChangeCircle className={`text-${card.hero.name.toLowerCase()} bg-white rounded-full rotate-90 hover:rotate-0 transition-transform duration-300 text-3xl`} />
         </button>
-        <a href={`${card.translation[0] ? (card.translation[0].link) : ('')}`}><Image
+        <a href={card.translation[0] ? card.translation[0].link : undefined}><Image
           src={`/images/event/${card.event.slug}/${card.hero.name.toLowerCase()}${evolved ? '-evo' : ''}.jpg`}
           alt={`${card.hero.name} ${card.hero.surname} ${card.rarity}★ ${card.event.name}`}
           width={1024}
@@ -58,7 +58,7 @@ export default function Card({ card, eventPage }) {
       </div>
       <hr className={`border-0 mt-1 mb-2 h-[3px] bg-${card.hero.name.toLowerCase()}`} />
       <div className="indexCaption flex flex-col space-y-6 justify-between h-full">
-          <h2 className={`text-2xl lg:text-xl font-display ${!(card.title) ? 'font-bold' : ''}`}>{card.title ? card.title : card.titleJp}</h2>
+          <h2 className={`text-2xl lg:text-xl font-display ${!(card.title) ? 'font-extrabold' : ''}`}>{card.title ? card.title : card.titleJp}</h2>
           
           <div className="flex flex-row mx-2 h-12 items-center justify-center">
               {distinctCameos.map((h, i) => (
