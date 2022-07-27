@@ -53,7 +53,7 @@ module.exports = {
       sirius: '#830707',
     },
     fontFamily: {
-      'display': ['"Krona One"']
+      'display': ['"Krona One"', '"Mochiy Pop One"']
     },
     extend: {
       fontFamily: {
@@ -68,19 +68,45 @@ module.exports = {
   plugins: [],
   safelist: [
     {
-      pattern: /text-(3xl|6xl)/
+      pattern: /text-(xs|xl|2xl|3xl|4xl|5xl|6xl)/,
+      variants: ['sm', 'md', 'lg', 'xl'],
     },
     'mb-16',
+    'my-8',
     'text-slate-400',
+    'bg-slate-300',
     'list-disc',
     'list-inside',
     'font-display',
     '2xl:grid-cols-3',
     'gap-8',
+    'gap-2',
+    'lg:gap-y-8',
     '2xl:gap-4',
     'lg:top-8',
+    'md:gap-y-8',
+    'gap-2',
+    'ml-8',
+    'pr-4',
+    'py-1',
+    'px-3',
+    '-mt-2',
+    '2xl:mt-4',
+    'border-[1px]',
+    'border-black',
+    {
+      pattern: /(grid-cols|col-span)-(3|4|6|9|12)/,
+      variants: ['lg', 'xl'],
+    },
     {
       pattern: /mb-(8|12)/
+    },
+    {
+      pattern: /(hidden|block)/,
+      variants: ['lg', 'xl', '2xl'],
+    },
+    {
+      pattern: /divide-(y|solid|slate-300)/
     },
     {
       pattern: /z-(0|10|20)/,

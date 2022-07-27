@@ -1,7 +1,7 @@
 import prisma from '../../../lib/prisma'
 import Event from '../../../components/db/Event'
 import Head from 'next/head'
-import Layout from '../../../components/Layout'
+import Layout, { siteTitle } from '../../../components/Layout'
 import dynamic from 'next/dynamic'
 import Script from 'next/script'
 
@@ -12,8 +12,8 @@ export async function getStaticProps() {
         },
         select: {
             name: true,
-            nameJp: true,
             slug: true,
+            noCover: true,
             startDate: true,
             endDate: true,
             sector: {
@@ -74,7 +74,7 @@ export default function EventIndex({ allEventsData }) {
     return (
         <Layout>
             <Head>
-                <title>Event Index</title>
+                <title>{siteTitle} / event index</title>
             </Head>
 
             <Script src="../../public/isotope-fit-columns.js" />
