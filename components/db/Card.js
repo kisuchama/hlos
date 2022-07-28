@@ -50,7 +50,7 @@ export default function Card({ card, eventPage }) {
         </button>
         <a href={card.translation[0] ? card.translation[0].link : undefined}><Image
           src={`/images/event/${card.event.slug}/${card.hero.name.toLowerCase()}${evolved ? '-evo' : ''}.jpg`}
-          alt={`${card.hero.name} ${card.hero.surname} ${card.rarity}★ ${card.event.name}`}
+          alt={`${(card.hero.name != 'Junior') ?  card.hero.name : ''} ${card.hero.surname} ${card.rarity}★ ${card.event.name}`}
           width={1024}
           height={630}
           className="z-0 absolute inset-0"
@@ -62,7 +62,7 @@ export default function Card({ card, eventPage }) {
           
           <div className="flex flex-row mx-2 h-12 items-center justify-center">
               {distinctCameos.map((h, i) => (
-                  <Link key={i} href={`/chara/${h.toLowerCase()}`}>
+                  <Link key={i} href={`/hlos/chara/${h.toLowerCase()}`}>
                       <a className="h-80px w-88px relative inline-block">
                           <Image
                               src={`/images/chibi/${h.toLowerCase()}.png`}

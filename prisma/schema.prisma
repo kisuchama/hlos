@@ -103,7 +103,7 @@ model EventTranslator {
 
 model Hero {
   id          Int           @id @default(autoincrement())
-  name        String
+  name        String        @unique
   surname     String?
   hex         String?       @db.Char(7)
   chibi       String?

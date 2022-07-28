@@ -72,6 +72,7 @@ module.exports = {
       variants: ['sm', 'md', 'lg', 'xl'],
     },
     'mb-16',
+    'mb-4',
     'my-8',
     'text-slate-400',
     'bg-slate-300',
@@ -81,6 +82,7 @@ module.exports = {
     '2xl:grid-cols-3',
     'gap-8',
     'gap-2',
+    'gap-x-2',
     'lg:gap-y-8',
     '2xl:gap-4',
     'lg:top-8',
@@ -94,9 +96,11 @@ module.exports = {
     '2xl:mt-4',
     'border-[1px]',
     'border-black',
+    'h-[3px]',
+    'space-x-2.5',
     {
-      pattern: /(grid-cols|col-span)-(3|4|6|9|12)/,
-      variants: ['lg', 'xl'],
+      pattern: /(grid-cols|col-span)-(2|3|4|6|9|12)/,
+      variants: ['md', 'lg', 'xl'],
     },
     {
       pattern: /mb-(8|12)/

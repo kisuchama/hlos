@@ -75,7 +75,7 @@ export default function Event({ event }) {
                 
                 <div className="flex flex-row mx-2 h-16 items-center justify-center">
                     {distinctCameos.map((h, i) => (
-                        <Link key={i} href={`/chara/${h.toLowerCase()}`}>
+                        <Link key={i} href={`/hlos/chara/${h.toLowerCase()}`}>
                             <a className="h-80px w-88px relative inline-block">
                                 <Image
                                     src={`/images/chibi/${h.toLowerCase()}.png`}

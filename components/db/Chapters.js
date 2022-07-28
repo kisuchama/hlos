@@ -36,13 +36,13 @@ export default function Chapter({ chapter }) {
   return (
     <>
       <div className={`filter-item storyPart ${chCameos.join(' ')}`}><div className="partWrapper"><div className="partContent">
-        <img src={`/images/story/${chapter.season}-${chapter.chapter}.jpg`} alt={chapter.name} />
-          {/* <Image
-              src={`/images/story/${chapter.season}-${chapter.chapter}.jpg`}
-              alt={chapter.name}
-              width={1024}
-              height={630}
-          /> */}
+        {/* <img src={`/images/story/${chapter.season}-${chapter.chapter}.jpg`} alt={chapter.name} /> */}
+        <Image
+            src={`/images/story/${chapter.season}-${chapter.chapter}.jpg`}
+            alt={chapter.name}
+            width={1024}
+            height={630}
+        />
       </div></div></div>
       {chapter.parts.map((p, i) => (
           <StoryPart key={i} part={p} season={chapter.season} chapter={chapter.chapter} />
