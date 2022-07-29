@@ -68,12 +68,14 @@ module.exports = {
   plugins: [],
   safelist: [
     {
-      pattern: /text-(xs|xl|2xl|3xl|4xl|5xl|6xl)/,
+      pattern: /text-(xs|sm|base|lg|xl|2xl|3xl|4xl|5xl|6xl)/,
       variants: ['sm', 'md', 'lg', 'xl'],
     },
     'mb-16',
     'mb-4',
     'my-8',
+    'lg:-mb-4',
+    'lg:-mt-8',
     'text-slate-400',
     'bg-slate-300',
     'list-disc',
@@ -98,6 +100,7 @@ module.exports = {
     'border-black',
     'h-[3px]',
     'space-x-2.5',
+    'lg:space-x-2',
     {
       pattern: /(grid-cols|col-span)-(2|3|4|6|9|12)/,
       variants: ['md', 'lg', 'xl'],

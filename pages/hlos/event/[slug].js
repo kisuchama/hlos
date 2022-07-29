@@ -7,6 +7,7 @@ import Head from "next/head";
 import Image from "next/image";
 import Date from "../../../components/Date";
 import { CgArrowRight, CgCalendarToday } from "react-icons/cg";
+import { MdTranslate } from "react-icons/md";
 
 export async function getStaticProps({ params }) {
   const event = await prisma.event.findUnique({
@@ -217,18 +218,21 @@ export default function EventPage({ event }) {
           </h2>
           <hr className="border-0 ml-8 h-[3px] bg-slate-300 grow hidden lg:block" />
         </div>
+        <div className="lg:col-span-12 flex flex-row items-center justify-end space-x-2 lg:-mt-8 lg:-mb-4">
+          <label for="tl"><MdTranslate className="lg:text-xl font-bold" /></label>
+          <select name="tl" id="tl" className="text-sm lg:text-base">
+            {eventTranslators.map((t, i) => (
+              <option key={i}>
+                {t}
+              </option>
+            ))}
+          </select>
+        </div>
         <div className="lg:col-span-12 grid grid-cols-1 divide-y divide-slate-300 divide-solid gap-4">
           {event.parts.map((p, i) => (
             <EventPart key={i} part={p} />
           ))}
         </div>
-        {/* <div className="text-sm flex flex-row">
-            {eventTranslators.map((t, i) => (
-                <div key={i} className="flex flex-row items-center">
-                <MdTranslate className="inline-block mx-1" /> <a href={`https://twitter.com/${t}`} className="link-underline">@{t}</a>
-            </div>
-            ))}
-          </div> */}
       </section>
     </Layout>
   );
