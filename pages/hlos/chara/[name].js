@@ -130,12 +130,14 @@ export default function CharaPage({ chara }) {
         </h2>
         <hr className={`border-0 ml-8 h-[3px] bg-${hero}/30 grow hidden lg:block`} />
       </div>
-      <div className="grid gap-x-2 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
+      <div className="grid gap-x-2 gap-y-6 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
         {chara.cards.map((c, i) => (
-            <Card key={i} card={c} eventPage={true} />          
+            <div key={i}>
+               <Card card={c} eventPage={true} />
+            </div>          
         ))}
       </div>
-      <div className="flex flex-row items-center">
+      <div className="mt-4 flex flex-row items-center">
         <h2 className="text-3xl font-display font-bold leading-loose">
           Cameos
         </h2>

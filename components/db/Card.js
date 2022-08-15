@@ -40,7 +40,7 @@ export default function Card({ card, eventPage }) {
   }
 
   return (
-    <div className={`cardCG w-full flex flex-col bg-white ${cameoClasses.join(' ')}`}>
+    <div className={`cardCG w-full h-full flex flex-col bg-white ${cameoClasses.join(' ')}`}>
       <div className="relative">
         <div className="z-10 absolute top-2 pr-4 bg-gradient-to-r from-white via-white">
           {rarity}
