@@ -123,7 +123,9 @@ export default function EventPage({ event }) {
   const eventName = event.name.toLowerCase().replace(regex, "");
   let totalCards = event.cards.length;
   if (totalCards > 4) {
-    totalCards = 4;
+    totalCards = 3;
+  } else if (totalCards = 4) {
+    totalCards = 2;
   }
   const eventTranslators = [];
   for (var k = 0; k < event.translator.length; k++) {
@@ -141,12 +143,7 @@ export default function EventPage({ event }) {
     coverImg.push(`/images/event/${event.slug}/main.jpg`);
   }
   return (
-    <Layout event>
-      <Head>
-        <title>
-          {siteTitle} / {eventName}
-        </title>
-      </Head>
+    <Layout event pageTitle={eventName}>
       <section className="text-center 2xl:hidden mb-8">
         <h1 className="text-3xl leading font-display font-bold">
           {event.name}
@@ -207,11 +204,13 @@ export default function EventPage({ event }) {
           </h2>
           <hr className="border-0 ml-8 h-[3px] bg-slate-300 grow hidden lg:block" />
         </div>
+        <div className="lg:col-span-12 grid lg:grid-cols-12 gap-x-2 gap-y-6">
         {event.cards.map((c, i) => (
           <div key={i} className={`lg:col-span-${12 / totalCards}`}>
             <Card card={c} eventPage={true} />
           </div>
         ))}
+        </div>
         <div className="lg:col-span-12 flex flex-row items-center">
           <h2 className="text-3xl font-display font-bold leading-loose">
             Event Story

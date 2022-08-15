@@ -26,10 +26,7 @@ export async function getStaticProps() {
 
 export default function CharaIndex({ allCharaData }) {
   return (
-    <Layout>
-      <Head>
-        <title>{siteTitle} / characters</title>
-      </Head>
+    <Layout pageTitle="characters">
 
       <h1 className="text-4xl font-display font-bold mb-8">Characters</h1>
       

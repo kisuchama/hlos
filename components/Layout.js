@@ -1,14 +1,15 @@
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
+import Header from "./Header";
 import { CgArrowLeft } from "react-icons/cg";
 import { FaBan } from "react-icons/fa";
 
 export const siteTitle = "/ hlos";
 
-export default function Layout({ children, home, event }) {
+export default function Layout({ children, home, event, pageTitle }) {
   return (
-    <div className="container mx-auto py-4 mt-2 sm:mt-12 mb-24">
+    <div>
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <meta
@@ -23,47 +24,15 @@ export default function Layout({ children, home, event }) {
         />
         <meta name="og:title" content={`キス.moe ${siteTitle}`} />
         <meta name="twitter:card" content="summary_large_image" />
+        <title>
+          {siteTitle}
+          {pageTitle ? (
+            ` / ${pageTitle}`
+          ) : ('')}
+        </title>
       </Head>
-      <header className="flex flex-col items-center">
-        {home ? (
-          <>
-            {/* <Image
-              priority
-              src="/images/profile.jpg"
-              className="rounded-full"
-              height={144}
-              width={144}
-              alt={name}
-            /> */}
-            <div className="relative w-32 h-32 logo transition-transform duration-500">
-              <FaBan className="text-9xl text-red-600 rotate-90 absolute top-0 left-0" />
-              <FaBan className="text-9xl text-gold-400 absolute top-0 left-0" />
-            </div>
-            <h1 className="text-4xl font-display tracking-tighter leading-loose my-4 -ml-4">{siteTitle}</h1>
-          </>
-        ) : (
-          <>
-            {/* <Link href="/">
-              <a>
-                <Image
-                  priority
-                  src="/images/profile.jpg"
-                  className="rounded-full"
-                  height={108}
-                  width={108}
-                  alt={name}
-                />
-              </a>
-            </Link>
-            <h2 className="text-2xl leading-6 my-4">
-              <Link href="/">
-                <a className="text-inherit">{name}</a>
-              </Link>
-            </h2> */}
-          </>
-        )}
-      </header>
-      <main>{children}</main>
+      <Header page={pageTitle}></Header>
+      <main className="container mx-auto pt-16 pb-4 mt-2 sm:mt-12 mb-24">{children}</main>
       {event && (
         <div className="mt-12 flex flex-row items-center justify-start">
           <CgArrowLeft className="inline-block mr-2"/>

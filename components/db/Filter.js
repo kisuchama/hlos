@@ -58,7 +58,7 @@ export default function StoryFilter({ page }) {
 
     return (
         <>
-            <button id="filterToggle" className={`fixed z-50 right-4 top-6 sm:right-12 sm:top-12 bg-black p-2 transition-all duration-500 ${showFilters ? "mt-5 sm:mt-0 sm:mr-80" : ""}`} onClick={toggleFilters}>
+            <button id="filterToggle" className={`fixed z-50 right-4 top-6 sm:right-12 sm:top-10 bg-black p-2 transition-all duration-500 ${showFilters ? "sm:mr-80" : ""}`} onClick={toggleFilters}>
                 <MdFilterList className="text-2xl sm:text-4xl text-white" />
             </button>
             <div id="storyFilters" className={`h-screen bg-white w-full max-w-full sm:w-96 fixed z-40 top-0 -right-full sm:-right-96 overflow-x-hidden p-12 border-l-[3px] transition-all duration-500 ${showFilters ? "mr-[100%] sm:mr-96" : ""}`}>

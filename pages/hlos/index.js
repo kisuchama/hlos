@@ -29,9 +29,6 @@ export async function getStaticProps() {
 export default function Home({ cameosCounted }) {
   return (
     <Layout home>
-      <Head>
-        <title>{`キス.moe ${siteTitle}`}</title>
-      </Head>
       <section className='my-10 max-w-xl mx-auto text-2xl md:text-5xl font-display flex flex-col gap-y-6 md:gap-y-8 items-center'>
         <Link href="/hlos/chara">
           <a className='hover:text-red-600 text-gold-400 transition duration-500 leading-relaxed md:-ml-48'>

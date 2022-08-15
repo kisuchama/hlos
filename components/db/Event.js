@@ -55,17 +55,17 @@ export default function Event({ event }) {
                     />
                 </div>
                 {event.sector ? (
-                    <hr className={`border-0 h-[3px] bg-${event.sector.location.toLowerCase()}`} />
+                    <hr className={`border-0 h-1 bg-${event.sector.location.toLowerCase()}`} />
                 ) : (
                     <></>
                 )}
                 {event.hero ? (
-                    <hr className={`border-0 h-[3px] bg-${event.hero.name.toLowerCase()}`} />
+                    <hr className={`border-0 h-1 bg-${event.hero.name.toLowerCase()}`} />
                 ) : (
                     <></>
                 )}
                 {!event.sector && !event.hero ? (
-                    <hr className="border-0 h-[3px] bg-black" />
+                    <hr className="border-0 h-1 bg-black" />
                 ) : (
                     <></>
                 )}                 

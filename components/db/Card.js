@@ -53,11 +53,11 @@ export default function Card({ card, eventPage }) {
           alt={`${(card.hero.name != 'Junior') ?  card.hero.name : ''} ${card.hero.surname} ${card.rarity}★ ${card.event.name}`}
           width={1024}
           height={630}
-          className="z-0 absolute inset-0"
+          className="z-0 absolute inset-0 mb-1"
         /></a>
       </div>
-      <hr className={`border-0 mt-1 mb-2 h-[3px] bg-${card.hero.name.toLowerCase()}`} />
-      <div className="indexCaption flex flex-col space-y-6 justify-between h-full">
+      <hr className={`border-0 h-2 bg-${card.hero.name.toLowerCase()}`} />
+      <div className="mt-1 indexCaption flex flex-col space-y-6 justify-between h-full">
           <h2 className={`text-2xl lg:text-xl font-display ${!(card.title) ? 'font-extrabold' : ''}`}>{card.title ? card.title : card.titleJp}</h2>
           
           <div className="flex flex-row mx-2 h-12 items-center justify-center">

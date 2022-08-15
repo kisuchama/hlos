@@ -72,11 +72,7 @@ const DynamicFilter = dynamic(() => import('../../../components/db/Filter'), {
 
 export default function EventIndex({ allEventsData }) {
     return (
-        <Layout>
-            <Head>
-                <title>{siteTitle} / event index</title>
-            </Head>
-
+        <Layout pageTitle="event index">
             <Script src="../../public/isotope-fit-columns.js" />
 
             <DynamicFilter page='eventIndex' />

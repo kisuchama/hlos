@@ -106,10 +106,7 @@ export default function CharaPage({ chara }) {
   sort('event.startDate', chara.cards);
   
   return (
-    <Layout>
-      <Head>
-        <title>{siteTitle} / {fullName.join(' ').toLowerCase().replace(regex, "")}</title>
-      </Head>
+    <Layout pageTitle={fullName.join(' ').toLowerCase().replace(regex, "")}>
       <div className="flex flex-row items-center space-x-2.5">
         {chara.substance ? (
         <Image

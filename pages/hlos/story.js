@@ -43,11 +43,7 @@ const DynamicFilter = dynamic(() => import('../../components/db/Filter'), {
 
 export default function StoryIndex({ story }) {
     return (
-        <Layout>
-            <Head>
-                <title>{siteTitle} / main story</title>
-            </Head>
-            
+        <Layout pageTitle="main story">            
             <DynamicFilter page='mainStory' />
             <h1 className='text-6xl font-bold font-display text-center mb-16'>Main Story</h1>
             <div className="filter-container">
